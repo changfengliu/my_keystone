@@ -73,9 +73,11 @@ export function Field(props: FieldProps<typeof controller>) {
               forceValidation={forceValidation}
               isReadOnly={isReadOnly}
               isRequired={isRequired}
+              list={foreignList}
               labelField={field.refLabelField}
               searchFields={field.refSearchFields}
-              list={foreignList}
+              filter={field.selectFilter}
+              sort={field.sort}
               state={{
                 kind: 'many',
                 value: value.value,
@@ -83,8 +85,6 @@ export function Field(props: FieldProps<typeof controller>) {
                   onChange?.({ ...value, value: newItems })
                 },
               }}
-              filter={field.selectFilter}
-              sort={field.sort}
             />
           ) : (
             <ComboboxSingle
@@ -94,9 +94,11 @@ export function Field(props: FieldProps<typeof controller>) {
               forceValidation={forceValidation}
               isReadOnly={isReadOnly}
               isRequired={isRequired}
+              list={foreignList}
               labelField={field.refLabelField}
               searchFields={field.refSearchFields}
-              list={foreignList}
+              filter={field.selectFilter}
+              sort={field.sort}
               state={{
                 kind: 'one',
                 value: value.value,
@@ -104,8 +106,6 @@ export function Field(props: FieldProps<typeof controller>) {
                   onChange?.({ ...value, value: newItem })
                 },
               }}
-              filter={field.selectFilter}
-              sort={field.sort}
             />
           )}
         </ContextualActions>
@@ -120,12 +120,16 @@ export function Field(props: FieldProps<typeof controller>) {
               href: item.built ? '' : `/${foreignList.path}/${item.id}`,
             }))}
             maxRows={2}
-            onRemove={keys => {
-              onChange?.({
-                ...value,
-                value: value.value.filter(item => !keys.has(item.id)),
-              })
-            }}
+            onRemove={
+              isReadOnly
+                ? undefined
+                : keys => {
+                    onChange?.({
+                      ...value,
+                      value: value.value.filter(item => !keys.has(item.id)),
+                    })
+                  }
+            }
             renderEmptyState={() => (
               <Text color="neutralSecondary" size="small">
                 No related {foreignList.plural.toLowerCase()}…

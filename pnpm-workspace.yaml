@@ -1,5 +1,6 @@
 packages:
   - 'docs'
+  - 'apps/*'
   - 'examples/**'
   - 'packages/*'
   - 'tests/admin-ui-tests'

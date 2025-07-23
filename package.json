@@ -81,5 +81,10 @@
         }
       ]
     }
+  },
+  "pnpm": {
+    "overrides": {
+      "react-day-picker": "9.8.0"
+    }
   }
 }

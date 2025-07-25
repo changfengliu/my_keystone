@@ -1,0 +1,6 @@
+*.log
+node_modules
+keystone.db
+.DS_Store
+.keystone/
+upload/

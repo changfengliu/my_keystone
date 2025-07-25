@@ -1,7 +1,7 @@
 {
   "name": "@keystone-6/mono-repo",
   "description": "KeystoneJS monorepo for all the @keystone-6 packages",
-  "author": "Thinkmill Labs Pty Ltd",
+  "author": "Thinkmill",
   "private": true,
   "version": null,
   "license": "MIT",

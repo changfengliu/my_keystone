@@ -1,0 +1,6 @@
+{
+  "watch": ["schema/**/*.ts", "keystone.ts"],
+  "ext": "ts,json",
+  "exec": "npm run dev",
+  "ignore": [".keystone/**", "node_modules/**", "dist/**"]
+}

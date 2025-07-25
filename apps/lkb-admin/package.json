@@ -1,0 +1,44 @@
+{
+  "name": "keystone-app",
+  "version": "1.0.3",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "predev": "node scripts/check-node-version.js",
+    "dev": "keystone dev",
+    "dev:watch": "nodemon",
+    "prestart": "node scripts/check-node-version.js",
+    "start": "keystone start",
+    "build": "keystone build",
+    "postinstall": "keystone postinstall",
+    "generate": "keystone prisma migrate dev",
+    "deploy": "keystone build && keystone prisma migrate deploy"
+  },
+  "dependencies": {
+    "@keystar/ui": "^0.7.19",
+    "@keystone-6/auth": "workspace:*",
+    "@keystone-6/core": "workspace:*",
+    "@keystone-6/fields-document": "workspace:*",
+    "@prisma/client": "^6.11.1",
+    "@shoelace-style/shoelace": "^2.20.1",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@types/multer": "^1.4.12",
+    "axios": "^1.10.0",
+    "bootstrap": "^5.3.7",
+    "multer": "^1.4.5-lts.1",
+    "node-version": "^3.0.0",
+    "semver": "^7.7.2",
+    "slate-dom": "^0.116.0",
+    "typescript": "^5.8.3",
+    "express": "^4.18.2",
+    "graphql-upload": "^15.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "postcss": "^8.5.6",
+    "prisma": "^6.11.1",
+    "tailwindcss": "^4.1.11"
+  }
+}

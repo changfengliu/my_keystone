@@ -1,9 +1,11 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { ActionButton } from '@keystar/ui/button'
-import { Divider } from '@keystar/ui/layout'
+import { Flex } from '@keystar/ui/layout'
 import { TooltipTrigger, Tooltip } from '@keystar/ui/tooltip'
 import { Text } from '@keystar/ui/typography'
+import { chevronRightIcon } from '@keystar/ui/icon/icons/chevronRightIcon'
+import { chevronDownIcon } from '@keystar/ui/icon/icons/chevronDownIcon'
 
 import { useQuery, useMutation, gql } from '@keystone-6/core/admin-ui/apollo'
 import {
@@ -16,6 +18,7 @@ import {
 } from '@keystone-6/core/admin-ui/components'
 import type { NavigationProps } from '@keystone-6/core/admin-ui/components'
 import { useRouter } from '@keystone-6/core/admin-ui/router'
+import { Icon } from '@keystar/ui/icon'
 
 const GET_ADMIN_MENUS = gql`
   query GetMenus {
@@ -59,44 +62,28 @@ function Navigation({ labelField, lists }: { labelField: string } & NavigationPr
 
   return (
     <NavContainer>
-      <NavList>
-        <NavItem href="/">所有模型</NavItem>
-
-        <ul className="pl-0">
+      <div style={{ flex: 1, minHeight: 0, overflow: 'auto' }}>
+        <NavList>
+          <NavItem href="/">所有模型</NavItem>
           {menuTree.map(menu =>
             menu.type === 'group' ? (
-              <li key={menu.id} className="relative">
-                {/* 分组 */}
-                <div className="px-[24px] py-[8px] font-bold text-sm text-gray-400">
-                  {menu.name}
-                </div>
-                {/* 子菜单 */}
-                {menu.children.length > 0 && (
-                  <ul className="pl-0 overflow-hidden transition-all duration-300">
-                    {menu.children.map(child => (
-                      <CustomNavItem key={child.id} href={child.path}>
-                        {child.name}
-                      </CustomNavItem>
-                    ))}
-                  </ul>
-                )}
-              </li>
+              <MenuGroup menu={menu} key={menu.id} />
             ) : (
               // 顶级菜单
-              <CustomNavItem key={menu.id} href={menu.path}>
-                {menu.name}
-              </CustomNavItem>
+              <NavItem key={menu.id} href={menu.path} children={menu.name} />
             )
           )}
-        </ul>
-
-        <Divider />
-        {lists.map(list => (
-          <NavItem key={list.key} href={getHrefFromList(list)}>
-            {list.label}
-          </NavItem>
-        ))}
-      </NavList>
+          <MenuGroup
+            open={false}
+            menu={{
+              name: '所有模型',
+              children: lists.map(menu => {
+                return { id: menu.key, name: menu.label, path: getHrefFromList(menu) }
+              }),
+            }}
+          />
+        </NavList>
+      </div>
       <NavFooter>
         {data?.authenticatedItem && <SignoutButton authItemLabel={data.authenticatedItem.label} />}
         <DeveloperResourcesMenu />
@@ -135,10 +122,9 @@ function SignoutButton({ authItemLabel }: { authItemLabel: string }) {
 //----------------------------------------------------------------------------------------------
 
 // 将菜单数据转换为树形结构
-// ts-ignore
-function buildMenuTree(menus) {
+function buildMenuTree(menus: any[]) {
   const menuMap = new Map()
-  const menusTree = []
+  const menusTree: any[] = []
 
   menus.forEach(menu => {
     if (menu.isEnabled) menuMap.set(menu.id, { ...menu, children: [] })
@@ -158,10 +144,30 @@ function buildMenuTree(menus) {
   return menusTree
 }
 
-function CustomNavItem({ href, children }) {
+function MenuGroup({ menu, open }: { menu: any; open?: boolean }) {
+  const [opened, setOpened] = useState(open !== false)
   return (
-    <NavItem href={href}>
-      <span className="pl-6">{children}</span>
-    </NavItem>
+    <div className="relative">
+      {/* 分组 */}
+      <Flex gap="small" alignItems="center" padding="8px 8px" onClick={() => setOpened(!opened)}>
+        <Icon
+          src={opened ? chevronDownIcon : chevronRightIcon}
+          size="small"
+          color="neutralSecondary"
+        />
+        <Text color="neutralSecondary" style={{ fontSize: 14 }}>
+          <span style={{ cursor: 'pointer' }}>{menu.name}</span>
+        </Text>
+      </Flex>
+
+      {/* 子菜单 */}
+      {menu.children.length > 0 && (
+        <div style={{ paddingLeft: 16 }} className={opened ? 'block' : 'hidden'}>
+          {menu.children.map((child: any) => (
+            <NavItem key={child.id} href={child.path} children={child.name} />
+          ))}
+        </div>
+      )}
+    </div>
   )
 }

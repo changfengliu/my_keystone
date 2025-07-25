@@ -81,8 +81,9 @@ export function PaginationControls(props: {
           >
             {item => <Item>{item.label}</Item>}
           </Picker>
+          <Text id="items-per-page">条, </Text>
         </HStack>
-        <Text color="neutralSecondary">条, {stats}</Text>
+        <Text color="neutralSecondary">{stats}</Text>
       </HStack>
 
       {/*

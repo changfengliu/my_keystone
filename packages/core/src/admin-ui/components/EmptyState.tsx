@@ -36,7 +36,7 @@ export function EmptyState(props: EmptyStateProps) {
         ) : (
           <>
             {props.icon && <Icon src={props.icon} size="large" color="neutral" />}
-            {props.title && <Heading size="medium">{props.title}</Heading>}
+            {props.title && <Heading size="small">{props.title}</Heading>}
             {props.message && isReactText(props.message) ? (
               <Text>{props.message}</Text>
             ) : (

@@ -65,7 +65,7 @@ export function PaginationControls(props: {
       */}
       <HStack gap="large" alignItems="center">
         <HStack isHidden={{ below: 'desktop' }} gap="regular" alignItems="center">
-          <Text id="items-per-page">{props.plural} per page:</Text>
+          <Text id="items-per-page">每页</Text>
           <Picker
             aria-labelledby="items-per-page"
             items={PAGE_SIZES.map(n => ({ label: String(n), id: n }))}
@@ -82,7 +82,7 @@ export function PaginationControls(props: {
             {item => <Item>{item.label}</Item>}
           </Picker>
         </HStack>
-        <Text color="neutralSecondary">{stats}</Text>
+        <Text color="neutralSecondary">条, {stats}</Text>
       </HStack>
 
       {/*
@@ -92,8 +92,8 @@ export function PaginationControls(props: {
       */}
       <HStack gap="large" alignItems="center">
         <HStack isHidden={{ below: 'desktop' }} gap="regular" alignItems="center">
+          <Text>第 </Text>
           <Picker
-            // prominence="low"
             aria-label={`Page number, of 11 pages`}
             items={pageItems}
             onSelectionChange={page => {
@@ -104,22 +104,20 @@ export function PaginationControls(props: {
           >
             {item => <Item>{item.label}</Item>}
           </Picker>
-          <Text>of {limit} pages</Text>
+          <Text>页, 共 {limit} 页</Text>
         </HStack>
         <HStack gap="regular">
           <ActionButton
-            aria-label="Previous page"
+            aria-label="上一页"
             isDisabled={prevPage < minPage}
             onPress={() => props.onChangePage(prevPage)}
-            // prominence="low"
           >
             <Icon src={chevronLeftIcon} />
           </ActionButton>
           <ActionButton
-            aria-label="Next page"
+            aria-label="下一页"
             isDisabled={nextPage > limit}
             onPress={() => props.onChangePage(nextPage)}
-            // prominence="low"
           >
             <Icon src={chevronRightIcon} />
           </ActionButton>
@@ -147,7 +145,7 @@ function getPaginationStats({
   if (total > pageSize) {
     const start = pageSize * (currentPage - 1) + 1
     const end = Math.min(start + pageSize - 1, total)
-    stats = `${start} - ${end} of ${total} ${plural}`
+    stats = `${start} - ${end} 共 ${total} 条`
   } else {
     if (total > 1 && plural) {
       stats = `${total} ${plural}`

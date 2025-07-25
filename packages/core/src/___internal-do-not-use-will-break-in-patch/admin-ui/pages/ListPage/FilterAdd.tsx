@@ -76,11 +76,11 @@ export function FilterAdd({ listKey, isDisabled }: { listKey: string; isDisabled
         onOpenChange={isOpen => !isOpen && resetState()}
       >
         <ActionButton>
-          <Text>Filter</Text>
+          <Text>筛选</Text>
           <Icon src={chevronDownIcon} />
         </ActionButton>
         <Dialog>
-          <Heading>Filter by {fieldLabel.toLocaleLowerCase()}</Heading>
+          <Heading>根据【{fieldLabel.toLocaleLowerCase()}】筛选</Heading>
           <Content>
             <form onSubmit={onSubmit} id={formId}>
               {/*
@@ -127,20 +127,15 @@ export function FilterAdd({ listKey, isDisabled }: { listKey: string; isDisabled
                   type={state.filterType}
                   value={state.filterValue}
                   onChange={value => {
-                    setState(state => ({
-                      ...state,
-                      filterValue: value,
-                    }))
+                    setState(state => ({ ...state, filterValue: value }))
                   }}
                 />
               </Grid>
             </form>
           </Content>
           <ButtonGroup>
-            <Button onPress={resetState}>Cancel</Button>
-            <Button prominence="high" type="submit" form={formId}>
-              Add
-            </Button>
+            <Button onPress={resetState}>取消</Button>
+            <Button prominence="high" type="submit" form={formId} children="确定" />
           </ButtonGroup>
         </Dialog>
       </DialogTrigger>
@@ -151,7 +146,7 @@ export function FilterAdd({ listKey, isDisabled }: { listKey: string; isDisabled
     <Fragment>
       <MenuTrigger>
         <ActionButton ref={triggerRef} isDisabled={isDisabled}>
-          <Text>Filter</Text>
+          <Text>筛选</Text>
           <Icon src={chevronDownIcon} />
         </ActionButton>
         <Menu

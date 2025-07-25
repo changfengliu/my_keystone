@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-
 import type { ListMeta } from '../../../../types'
 
 export function useSort(list: ListMeta) {

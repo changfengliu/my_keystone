@@ -214,11 +214,10 @@ function ListPage({ listKey }: ListPageProps) {
           <SearchField
             aria-label="Search"
             isDisabled={isEmpty}
-            // label={`Search by ${searchLabels.length ? searchLabels.join(', ') : 'ID'}`}
             onClear={() => updateSearch('')}
             onSubmit={updateSearch}
             onChange={setSearchString}
-            placeholder="Search…"
+            placeholder="搜索..."
             value={searchString}
             width="alias.singleLineWidth"
             flexGrow={{ mobile: 1, tablet: 0 }}
@@ -230,7 +229,7 @@ function ListPage({ listKey }: ListPageProps) {
               <ActionButton aria-label="reset" onPress={resetToDefaults} prominence="low">
                 <Icon src={undo2Icon} />
               </ActionButton>
-              <Tooltip>Reset to defaults</Tooltip>
+              <Tooltip>重置</Tooltip>
             </TooltipTrigger>
           )}
           {!!dataWithPevious && loading && <ProgressCircle size="small" isIndeterminate />}
@@ -329,14 +328,14 @@ function ListTable({
             ) : isConstrained ? (
               <EmptyState
                 icon={searchXIcon}
-                title="No results"
-                message="No items found. Try adjusting your search or filters."
+                title="无结果"
+                message="未找到相关数据。请调整搜索或筛选条件。"
               />
             ) : (
               <EmptyState
                 icon={textSelectIcon}
-                title="Empty list"
-                message="Add the first item to see it here."
+                title="空列表"
+                message="添加第一条数据后即可显示。"
               />
             )
           }

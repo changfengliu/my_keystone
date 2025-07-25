@@ -40,7 +40,7 @@ export function HomePage() {
     <PageContainer
       header={
         <Heading elementType="h1" size="small">
-          Dashboard
+          所有模型
         </Heading>
       }
     >

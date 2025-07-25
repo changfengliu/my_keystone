@@ -22,7 +22,7 @@ function CreateItemPage({ listKey }: { listKey: string }) {
   return (
     <PageContainer
       title={`Create ${list.singular}`}
-      header={<ItemPageHeader list={list} label="Create" title={`Create ${list.singular}`} />}
+      header={<ItemPageHeader list={list} label={`创建 ${list.singular}`} title="" />}
     >
       <ColumnLayout>
         <form
@@ -55,7 +55,7 @@ function CreateItemPage({ listKey }: { listKey: string }) {
 
           <BaseToolbar>
             <Button isPending={createItem.state === 'loading'} prominence="high" type="submit">
-              Create
+              保存
             </Button>
           </BaseToolbar>
         </form>

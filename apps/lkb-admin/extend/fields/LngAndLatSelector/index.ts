@@ -4,12 +4,12 @@ import {
   type FieldTypeFunc,
   fieldType,
   orderDirectionEnum,
-} from "@keystone-6/core/types";
-import { graphql } from "@keystone-6/core";
+} from '@keystone-6/core/types'
+import { graphql } from '@keystone-6/core'
 
 type TextFieldConfig<ListTypeInfo extends BaseListTypeInfo> = CommonFieldConfig<ListTypeInfo> & {
-  isIndexed?: boolean | "unique";
-};
+  isIndexed?: boolean | 'unique'
+}
 
 export function LngAndLatSelector<ListTypeInfo extends BaseListTypeInfo>({
   isIndexed,
@@ -17,17 +17,17 @@ export function LngAndLatSelector<ListTypeInfo extends BaseListTypeInfo>({
 }: TextFieldConfig<ListTypeInfo> = {}): FieldTypeFunc<ListTypeInfo> {
   return meta =>
     fieldType({
-      kind: "scalar",
-      mode: "optional",
-      scalar: "String",
-      index: isIndexed === true ? "index" : isIndexed || undefined,
+      kind: 'scalar',
+      mode: 'optional',
+      scalar: 'String',
+      index: isIndexed === true ? 'index' : isIndexed || undefined,
     })({
       ...config,
       input: {
         create: {
           arg: graphql.arg({ type: graphql.String }),
           resolve(value, context) {
-            return value;
+            return value
           },
         },
         update: { arg: graphql.arg({ type: graphql.String }) },
@@ -36,12 +36,12 @@ export function LngAndLatSelector<ListTypeInfo extends BaseListTypeInfo>({
       output: graphql.field({
         type: graphql.String,
         resolve({ value, item }, args, context, info) {
-          return value;
+          return value
         },
       }),
-      views: "./extend/fields/LngAndLatSelector/views",
+      views: './extend/fields/LngAndLatSelector/views',
       getAdminMeta() {
-        return {};
+        return {}
       },
-    });
+    })
 }

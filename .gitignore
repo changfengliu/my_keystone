@@ -13,3 +13,9 @@ __generated__
 *.vscode
 
 .pnpm-store
+
+*.log
+keystone.db
+
+# upload file dir
+upload/

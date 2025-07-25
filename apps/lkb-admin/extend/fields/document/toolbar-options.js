@@ -32,4 +32,4 @@ export const toolbarOptions_Full = {
     [1, 1],
     [1, 1, 1],
   ],
-};
+}

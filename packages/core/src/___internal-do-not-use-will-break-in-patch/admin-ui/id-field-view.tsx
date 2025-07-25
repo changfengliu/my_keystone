@@ -50,7 +50,7 @@ export function Field({
   return (
     <Grid gap="regular" columns="1fr auto" alignItems="end">
       <TextField
-        label="Item ID"
+        label="ID"
         value={value ?? ''}
         isReadOnly
         onFocus={({ target }) => {

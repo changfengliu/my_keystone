@@ -4,9 +4,7 @@ import { Dialog, useDialogContainer } from '@keystar/ui/dialog'
 import { Box } from '@keystar/ui/layout'
 import { Content } from '@keystar/ui/slots'
 import { Heading } from '@keystar/ui/typography'
-
 import { useList } from '../context'
-
 import { Fields } from '../utils/Fields'
 import { useBuildItem } from '../utils/useCreateItem'
 

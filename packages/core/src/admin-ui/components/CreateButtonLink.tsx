@@ -1,10 +1,9 @@
 import { Button } from '@keystar/ui/button'
+import type { ListMeta } from '../../types'
 import { Text } from '@keystar/ui/typography'
 
-import type { ListMeta } from '../../types'
-
 export function CreateButtonLink(props: { children?: string; list: ListMeta }) {
-  const { list, children = `Create ${list.singular}` } = props
+  const { list, children = `创建 ${list.singular}` } = props
   return (
     <Button
       aria-label={`New ${props.list.singular}`}

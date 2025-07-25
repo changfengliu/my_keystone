@@ -25,6 +25,23 @@ export default function extendExpressApp(
     res.json({ success: true, data: serverInfo })
   })
 
+  app.use(
+    '/upload/images',
+    express.static('public/upload/images', { index: false, redirect: false, lastModified: false })
+  )
+
+  app.use(
+    '/upload/files',
+    express.static('public/upload/files', {
+      setHeaders(res) {
+        res.setHeader('Content-Type', 'application/octet-stream')
+      },
+      index: false,
+      redirect: false,
+      lastModified: false,
+    })
+  )
+
   /**
    * 上传微信小程序用户头像
    */

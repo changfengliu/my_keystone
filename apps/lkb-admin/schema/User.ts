@@ -1,3 +1,4 @@
+import fs from 'node:fs/promises'
 import { list } from '@keystone-6/core'
 import { allowAll } from '@keystone-6/core/access'
 import { text, password, timestamp, image, select, integer } from '@keystone-6/core/fields'
@@ -21,7 +22,20 @@ export const User = list({
     }), // 用户名一般是真实姓名，昵称是用户自己设置的
     phone: text({ validation: { isRequired: true }, isIndexed: 'unique', ui: { label: '手机号' } }),
     email: text({ validation: { isRequired: true }, isIndexed: 'unique', ui: { label: '邮箱' } }),
-    avatar: image({ storage: 'user_avatar', ui: { label: '头像' } }),
+    avatar: image({
+      storage: {
+        async put(key, stream) {
+          await fs.writeFile(`public/upload/images/avatars/${key}`, stream)
+        },
+        async delete(key) {
+          await fs.unlink(`public/upload/images/avatars/${key}`)
+        },
+        url(key) {
+          return `/upload/images/avatars/${key}`
+        },
+      },
+      ui: { label: '头像' },
+    }),
     gender: select({
       type: 'integer',
       options: [
@@ -39,6 +53,7 @@ export const User = list({
     password: password({ validation: { isRequired: true }, ui: { label: '密码' } }),
     openid: text({
       ui: {
+        label: '微信 OpenID',
         createView: { fieldMode: 'hidden' },
         itemView: { fieldMode: 'read' },
       },
@@ -134,7 +149,6 @@ export const User = list({
   },
   ui: {
     label: '用户管理',
-    isHidden: false,
     path: 'system-users',
   },
 })

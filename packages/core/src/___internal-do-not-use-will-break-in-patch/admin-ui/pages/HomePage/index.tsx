@@ -101,7 +101,7 @@ function ListCard({
       )
     return (
       <Text id={countElementId} color="neutralSecondary">
-        {count} item{count !== 1 ? 's' : ''}
+        {count ? `${count} item${count !== 1 ? 's' : ''}` : '无记录'}
       </Text>
     )
   })()
@@ -116,7 +116,7 @@ function ListCard({
       position="relative"
     >
       <VStack gap="regular">
-        <Heading elementType="h3" size="small" truncate>
+        <Heading elementType="h3" size="small" truncate marginBottom={2}>
           <CardLink
             aria-describedby={countElementId}
             href={`/${list.path}${list.isSingleton ? '/1' : ''}`}

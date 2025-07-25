@@ -569,7 +569,7 @@ function ArrayFieldListView<Element extends ComponentSchema>(
               <ActionButton onPress={() => onRemoveKey(item.key)}>
                 <Icon src={trash2Icon} />
               </ActionButton>
-              <Tooltip>Delete</Tooltip>
+              <Tooltip>删除</Tooltip>
             </TooltipTrigger>
           </Item>
         )

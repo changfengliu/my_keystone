@@ -265,11 +265,7 @@ function ListPageHeader({ listKey, showCreate }: { listKey: string; showCreate?:
       <Heading id={LIST_PAGE_TITLE_ID} elementType="h1" size="small">
         {list.label}
       </Heading>
-      {showCreate && (
-        <CreateButtonLink
-          list={list}
-        >{`新建 ${list.singular.toLocaleLowerCase()}`}</CreateButtonLink>
-      )}
+      {showCreate && <CreateButtonLink list={list}>{`新建 ${list.singular}`}</CreateButtonLink>}
     </Fragment>
   )
 }

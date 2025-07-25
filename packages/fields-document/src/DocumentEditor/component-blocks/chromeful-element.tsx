@@ -163,7 +163,7 @@ function DefaultToolbarWithChrome({
             <ActionButton prominence="low" onPress={onRemove}>
               <Icon src={trash2Icon} />
             </ActionButton>
-            <Tooltip tone="critical">Delete</Tooltip>
+            <Tooltip tone="critical">删除</Tooltip>
           </TooltipTrigger>
         </Flex>
         {!isValid && <FieldMessage>Contains invalid fields. Please edit.</FieldMessage>}

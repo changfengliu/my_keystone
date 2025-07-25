@@ -72,12 +72,12 @@ function DeleteButton({ list, value }: { list: ListMeta; value: Record<string, u
   return (
     <Fragment>
       <DialogTrigger>
-        <Button tone="critical">Delete</Button>
+        <Button tone="critical">删除</Button>
         <AlertDialog
           tone="critical"
-          title="Delete item"
-          cancelLabel="Cancel"
-          primaryActionLabel="Yes, delete"
+          title="删除记录"
+          cancelLabel="取消"
+          primaryActionLabel="是，删除"
           onPrimaryAction={async () => {
             try {
               await deleteItem()

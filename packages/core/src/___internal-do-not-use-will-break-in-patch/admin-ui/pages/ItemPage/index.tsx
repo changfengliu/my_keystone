@@ -138,16 +138,16 @@ function ResetButton(props: { onReset: () => void; hasChanges?: boolean }) {
   return (
     <DialogTrigger>
       <Button tone="accent" isDisabled={!props.hasChanges}>
-        Reset
+        重置
       </Button>
       <AlertDialog
-        title="Reset changes"
-        cancelLabel="Cancel"
-        primaryActionLabel="Yes, reset"
+        title="重置修改"
+        cancelLabel="取消"
+        primaryActionLabel="是，重置"
         autoFocusButton="primary"
         onPrimaryAction={props.onReset}
       >
-        Are you sure? Lost changes cannot be recovered.
+        确定要重置修改吗？丢失的修改将无法恢复。
       </AlertDialog>
     </DialogTrigger>
   )
@@ -276,7 +276,7 @@ function ItemForm({
             prominence="high"
             type="submit"
           >
-            Save
+            保存
           </Button>
           <ResetButton hasChanges={hasChangedFields} onReset={resetValueState} />
           <Box flex />

@@ -87,6 +87,7 @@ export function Navigation() {
 
   if (adminConfig?.components?.Navigation)
     return <adminConfig.components.Navigation lists={visibleLists} />
+
   return (
     <NavContainer>
       <NavList>

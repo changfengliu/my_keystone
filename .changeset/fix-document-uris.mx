@@ -1,5 +1,0 @@
----
-"@keystone-6/fields-document": patch
----
-
-Use `new URL` rather than `encodeURI` for encoding URLs safely

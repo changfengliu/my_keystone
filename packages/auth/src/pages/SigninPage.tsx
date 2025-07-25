@@ -7,7 +7,7 @@ import { Notice } from '@keystar/ui/notice'
 import { PasswordField } from '@keystar/ui/password-field'
 import { Content } from '@keystar/ui/slots'
 import { TextField } from '@keystar/ui/text-field'
-import { Heading, Text } from '@keystar/ui/typography'
+import { Text } from '@keystar/ui/typography'
 
 import { gql, useMutation } from '@keystone-6/core/admin-ui/apollo'
 import { GraphQLErrorNotice, Logo } from '@keystone-6/core/admin-ui/components'
@@ -78,7 +78,7 @@ function SigninPage({
   return (
     <>
       <NextHead>
-        <title key="title">Keystone - Sign in</title>
+        <title key="title">登录 - 来客宝</title>
       </NextHead>
       <Grid
         alignItems="center"
@@ -93,21 +93,8 @@ function SigninPage({
         <HStack paddingY="xlarge">
           <Logo />
         </HStack>
-
-        <VStack
-          elementType="form"
-          onSubmit={onSubmit}
-          // styles
-          flex
-          gap="xxlarge"
-          paddingY="xlarge"
-        >
-          <Heading elementType="h1" size="regular">
-            Sign in
-          </Heading>
-
+        <VStack elementType="form" onSubmit={onSubmit} flex gap="xxlarge" paddingY="xlarge">
           <GraphQLErrorNotice errors={[error?.networkError, ...(error?.graphQLErrors ?? [])]} />
-
           {data?.authenticate?.__typename === failureTypename && (
             <Notice tone="critical">
               <Content>
@@ -115,7 +102,6 @@ function SigninPage({
               </Content>
             </Notice>
           )}
-
           <VStack gap="large">
             <TextField
               autoFocus
@@ -137,10 +123,13 @@ function SigninPage({
               value={state.secret}
             />
           </VStack>
-
-          <Button isPending={pending} prominence="high" type="submit" alignSelf="start">
-            Sign in
-          </Button>
+          <Button
+            isPending={pending}
+            prominence="high"
+            type="submit"
+            alignSelf="start"
+            children="登录"
+          />
         </VStack>
       </Grid>
     </>

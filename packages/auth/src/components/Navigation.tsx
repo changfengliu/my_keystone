@@ -20,17 +20,10 @@ import { useRouter } from '@keystone-6/core/admin-ui/router'
 export default ({ labelField }: { labelField: string }) =>
   (props: NavigationProps) => <Navigation labelField={labelField} {...props} />
 
-function Navigation({
-  labelField,
-  lists,
-}: {
-  labelField: string
-} & NavigationProps) {
-  const { data } = useQuery<{
-    authenticatedItem: null | {
-      label: string
-    }
-  }>(
+//-------------------------------------------------------------
+
+function Navigation({ labelField, lists }: { labelField: string } & NavigationProps) {
+  const { data } = useQuery<{ authenticatedItem: null | { label: string } }>(
     useMemo(
       () => gql`
     query KsAuthFetchSession {
@@ -46,7 +39,7 @@ function Navigation({
   return (
     <NavContainer>
       <NavList>
-        <NavItem href="/">Dashboard</NavItem>
+        <NavItem href="/">所有模型</NavItem>
         <Divider />
         {lists.map(list => (
           <NavItem key={list.key} href={getHrefFromList(list)}>
@@ -54,7 +47,6 @@ function Navigation({
           </NavItem>
         ))}
       </NavList>
-
       <NavFooter>
         {data?.authenticatedItem && <SignoutButton authItemLabel={data.authenticatedItem.label} />}
         <DeveloperResourcesMenu />
@@ -80,7 +72,7 @@ function SignoutButton({ authItemLabel }: { authItemLabel: string }) {
 
   return (
     <TooltipTrigger>
-      <ActionButton onPress={() => endSession()}>Sign out</ActionButton>
+      <ActionButton onPress={() => endSession()}>退出系统</ActionButton>
       <Tooltip>
         <Text>
           Signed in as <strong>{authItemLabel}</strong>

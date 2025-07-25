@@ -268,7 +268,7 @@ function ListPageHeader({ listKey, showCreate }: { listKey: string; showCreate?:
       {showCreate && (
         <CreateButtonLink
           list={list}
-        >{`New ${list.singular.toLocaleLowerCase()}`}</CreateButtonLink>
+        >{`新建 ${list.singular.toLocaleLowerCase()}`}</CreateButtonLink>
       )}
     </Fragment>
   )
@@ -410,7 +410,7 @@ function ListTable({
         >
           <Item key="delete" textValue="Delete">
             <Icon src={trash2Icon} />
-            <Text>Delete</Text>
+            <Text>删除选中行</Text>
           </Item>
         </ActionBar>
       </ActionBarContainer>

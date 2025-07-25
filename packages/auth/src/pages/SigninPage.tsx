@@ -90,10 +90,10 @@ function SigninPage({
         rows="auto 1fr"
         width="container.xsmall"
       >
-        <HStack paddingY="xlarge">
-          <Logo />
-        </HStack>
         <VStack elementType="form" onSubmit={onSubmit} flex gap="xxlarge" paddingY="xlarge">
+          <HStack paddingY="xlarge">
+            <Logo />
+          </HStack>
           <GraphQLErrorNotice errors={[error?.networkError, ...(error?.graphQLErrors ?? [])]} />
           {data?.authenticate?.__typename === failureTypename && (
             <Notice tone="critical">
@@ -127,8 +127,8 @@ function SigninPage({
             isPending={pending}
             prominence="high"
             type="submit"
-            alignSelf="start"
-            children="登录"
+            alignSelf="center"
+            children="登 录"
           />
         </VStack>
       </Grid>

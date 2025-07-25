@@ -39,6 +39,7 @@
     "nodemon": "^3.1.10",
     "postcss": "^8.5.6",
     "prisma": "^6.11.1",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "@types/express": "^4.17.14"
   }
 }

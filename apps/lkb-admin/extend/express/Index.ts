@@ -1,7 +1,7 @@
 import multer from 'multer'
 import express from 'express'
 import { Readable } from 'node:stream'
-import { KeystoneContext } from '@keystone-6/core/types'
+import type { KeystoneContext } from '@keystone-6/core/types'
 // @ts-expect-error
 import Upload from 'graphql-upload/Upload.js'
 // @ts-expect-error

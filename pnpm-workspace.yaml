@@ -1,5 +1,5 @@
 packages:
-  - 'apps/*'
   - 'packages/*'
+  - 'apps/*'
   - 'prisma-utils'
   - '!**/node_modules/**'

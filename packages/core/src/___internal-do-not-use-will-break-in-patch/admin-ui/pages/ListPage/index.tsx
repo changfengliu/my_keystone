@@ -303,7 +303,6 @@ function ListTable({
   const [idsForDeletion, setIdsForDeletion] = useState<Set<Key> | null>(null)
   const columns = [...selectedFields].map(path => {
     const field = list.fields[path]
-    console.log(field)
     return {
       id: path,
       label: field.label,
@@ -360,6 +359,7 @@ function ListTable({
                     const field = list.fields[key]
                     const value = row[key]
                     const CellContent = field.views.Cell
+                    console.log(field)
                     return (
                       <Cell>
                         {CellContent ? (

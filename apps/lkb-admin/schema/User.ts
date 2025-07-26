@@ -34,7 +34,9 @@ export const User = list({
           return `/upload/images/avatars/${key}`
         },
       },
-      ui: { label: '头像' },
+      ui: {
+        label: '头像',
+      },
     }),
     gender: select({
       type: 'integer',

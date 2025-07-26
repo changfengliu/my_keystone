@@ -4,18 +4,18 @@ import { SUPPORTED_IMAGE_EXTENSIONS } from '../utils'
 export { Field } from './Field'
 
 export const Cell: CellComponent<typeof controller> = ({ value }) => {
-  if (!value) return null
+  if (!value?.url) return null
   return (
     <div
       style={{
         alignItems: 'center',
         display: 'flex',
-        height: 24,
+        width: 30,
+        height: 30,
         lineHeight: 0,
-        width: 24,
       }}
     >
-      <img style={{ maxHeight: '100%', maxWidth: '100%' }} src={value.url} />
+      <img style={{ maxHeight: '100%', maxWidth: '100%', borderRadius: 2 }} src={value.url} />
     </div>
   )
 }

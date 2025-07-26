@@ -93,7 +93,7 @@ function ImageView(props: {
         <ImageDetails {...imageData}>
           {onChange && (
             <HStack gap="regular" alignItems="center" marginTop="auto">
-              <ActionButton onPress={onFileTrigger}>Change</ActionButton>
+              <ActionButton onPress={onFileTrigger}>重新上传</ActionButton>
               {value.kind === 'from-server' && (
                 <ActionButton
                   prominence="low"
@@ -101,7 +101,7 @@ function ImageView(props: {
                     onChange({ kind: 'remove', previous: value })
                   }}
                 >
-                  Remove
+                  删除
                 </ActionButton>
               )}
               {value.kind === 'upload' && (
@@ -111,7 +111,7 @@ function ImageView(props: {
                     onChange(value.previous)
                   }}
                 >
-                  Cancel
+                  取消
                 </ActionButton>
               )}
             </HStack>
@@ -122,7 +122,7 @@ function ImageView(props: {
       {!imageData && (
         <HStack gap="regular" alignItems="center">
           <ActionButton isDisabled={onChange === undefined} onPress={onFileTrigger}>
-            Upload
+            上传
           </ActionButton>
           {value.kind === 'remove' && value.previous && (
             <ActionButton
@@ -133,7 +133,7 @@ function ImageView(props: {
                 }
               }}
             >
-              Undo removal
+              撤销删除
             </ActionButton>
           )}
         </HStack>

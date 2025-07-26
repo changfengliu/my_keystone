@@ -35,7 +35,9 @@ const GET_ADMIN_MENUS = gql`
 `
 
 export default ({ labelField }: { labelField: string }) =>
-  (props: NavigationProps) => <Navigation labelField={labelField} {...props} />
+  (props: NavigationProps) => {
+    return <Navigation labelField={labelField} {...props} />
+  }
 
 //-------------------------------------------------------------
 

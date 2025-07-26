@@ -26,7 +26,9 @@ export const getSchemaExtension = ({
     const uniqueWhereInputType = assertInputObjectType(
       base.schema.getType(authGqlNames.whereUniqueInputName)
     )
+
     const identityFieldOnUniqueWhere = uniqueWhereInputType.getFields()[identityField]
+
     if (
       base.schema.extensions.sudo &&
       identityFieldOnUniqueWhere?.type !== GraphQLString &&

@@ -15,9 +15,9 @@ import type { filters } from '../../fields/filters'
 import { entriesTyped } from '../../lib/core/utils'
 
 const COPY_TOOLTIP_CONTENT = {
-  neutral: 'Copy ID',
-  positive: 'Copied to clipboard',
-  critical: 'Unable to copy',
+  neutral: '复制 ID',
+  positive: '复制成功',
+  critical: '复制失败',
 }
 type TooltipState = { isOpen?: boolean; tone: keyof typeof COPY_TOOLTIP_CONTENT }
 

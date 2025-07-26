@@ -99,7 +99,7 @@ export function PageContainer({ children, header, title }: PageContainerProps) {
   return (
     <PageWrapper>
       <NextHead>
-        <title key="title">{title ? `Keystone - ${title}` : 'Keystone'}</title>
+        <title key="title">{title ? `来客宝 - ${title}` : '来客宝'}</title>
       </NextHead>
       <HStack
         alignItems="center"

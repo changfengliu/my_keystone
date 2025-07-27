@@ -410,50 +410,45 @@ function ListTable({
       </TableView>
     )
   } else if (isWaterfall) {
+    const waterfallList = data?.items ?? []
     $list = (
-      <TableView
-        aria-labelledby={LIST_PAGE_TITLE_ID}
-        selectionMode={selectionMode}
-        onSortChange={onSortChange}
-        sortDescriptor={parseSortQuery(router.query.sortBy) || parseInitialSort(list.initialSort)}
-        density="spacious"
-        overflowMode="truncate"
-        onSelectionChange={setSelectedKeys}
-        selectedKeys={selectedKeys}
-        renderEmptyState={() => (loading ? <ProgressCircle isIndeterminate /> : emptyTip)}
-        flex
-        UNSAFE_style={{
-          opacity: loading && !!data ? 0.5 : undefined,
-        }}
-      >
-        <TableHeader columns={columns}>
-          {({ label, id, ...options }) => (
-            <Column key={id} isRowHeader {...options} children={label} />
-          )}
-        </TableHeader>
-        <TableBody items={data?.items ?? []}>
-          {row => {
-            return (
-              <Row href={`/${list.path}/${row?.id}`}>
-                {key => {
-                  const field = list.fields[key]
-                  const value = row[key]
-                  const CellContent = field.views.Cell
-                  return (
-                    <Cell>
-                      {CellContent ? (
-                        <CellContent value={value} field={field.controller} item={row} />
-                      ) : (
-                        <Text>{value?.toString()}</Text>
-                      )}
-                    </Cell>
-                  )
-                }}
-              </Row>
-            )
+      <div>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(5, 1fr)',
+            gridAutoRows: '280px',
+            gap: '20px',
           }}
-        </TableBody>
-      </TableView>
+        >
+          {waterfallList.map(row => {
+            const imgObj = (row.image || row.cover) as { url: string }
+            const imageSrc = imgObj?.url as string
+            const imageName = row?.name as string
+            return (
+              <div key={row.id as string} style={{ display: 'flex', flexDirection: 'column' }}>
+                <div style={{ flex: 1, minWidth: 0, paddingBottom: 10 }}>
+                  <img
+                    onClick={() => (window.location.href = `/${list.path}/${row?.id}`)}
+                    src={imageSrc}
+                    style={{
+                      width: '100%',
+                      height: '250px',
+                      display: 'block',
+                      objectFit: 'cover',
+                      borderRadius: 5,
+                      cursor: 'pointer',
+                    }}
+                  />
+                </div>
+                <Text align="center" truncate>
+                  {imageName || 'null'}
+                </Text>
+              </div>
+            )
+          })}
+        </div>
+      </div>
     )
   } else {
     $list = (

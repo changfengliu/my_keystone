@@ -695,14 +695,13 @@ function DeleteItemsDialog(props: { items: Set<Key>; listKey: string; refetch: (
 
   return (
     <AlertDialog
-      title="Delete items"
-      cancelLabel="Cancel"
-      primaryActionLabel="Yes, delete"
+      title="删除确认"
+      cancelLabel="取消"
+      primaryActionLabel="是，删除"
       onPrimaryAction={onDelete}
       tone="critical"
     >
-      Are you sure? This will permanently delete {items.size} item
-      {items.size === 1 ? '' : 's'}.
+      确定要删除 {items.size} 条数据吗？
     </AlertDialog>
   )
 }

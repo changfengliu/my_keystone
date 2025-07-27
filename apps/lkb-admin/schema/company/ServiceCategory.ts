@@ -1,6 +1,6 @@
-import { list } from "@keystone-6/core";
-import { allowAll } from "@keystone-6/core/access";
-import { text, integer, select } from "@keystone-6/core/fields";
+import { list } from '@keystone-6/core'
+import { allowAll } from '@keystone-6/core/access'
+import { text, integer, select } from '@keystone-6/core/fields'
 
 /**
  * 服务项目分类
@@ -10,15 +10,15 @@ export const ServiceCategory = list({
   fields: {
     name: text({
       validation: { isRequired: true },
-      isIndexed: "unique",
+      isIndexed: 'unique',
     }),
     status: select({
-      defaultValue: "draft",
+      defaultValue: 'draft',
       options: [
-        { label: "启用", value: "published" },
-        { label: "禁用", value: "draft" },
+        { label: '启用', value: 'published' },
+        { label: '禁用', value: 'draft' },
       ],
-      ui: { displayMode: "segmented-control" },
+      ui: { displayMode: 'segmented-control' },
     }),
     order: integer({
       defaultValue: 0,
@@ -26,12 +26,11 @@ export const ServiceCategory = list({
     }),
   },
   ui: {
-    label: "服务分类管理",
-    labelField: "name",
-    isHidden: false,
+    label: '服务分类管理',
+    labelField: 'name',
     listView: {
-      initialColumns: ["name", "status", "order"],
-      initialSort: { field: "order", direction: "ASC" },
+      initialColumns: ['name', 'status', 'order'],
+      initialSort: { field: 'order', direction: 'ASC' },
     },
   },
-});
+})

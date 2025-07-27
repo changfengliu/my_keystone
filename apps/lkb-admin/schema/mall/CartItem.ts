@@ -1,6 +1,6 @@
-import { list } from "@keystone-6/core";
-import { allowAll } from "@keystone-6/core/access";
-import { relationship, integer } from "@keystone-6/core/fields";
+import { list } from '@keystone-6/core'
+import { allowAll } from '@keystone-6/core/access'
+import { relationship, integer } from '@keystone-6/core/fields'
 
 /**
  * 购物车条目
@@ -9,11 +9,11 @@ export const CartItem = list({
   access: allowAll,
   fields: {
     cart: relationship({
-      ref: "Cart",
+      ref: 'Cart',
       many: false,
     }),
     product: relationship({
-      ref: "Product",
+      ref: 'Product',
       many: false,
     }),
     quantity: integer({
@@ -28,11 +28,10 @@ export const CartItem = list({
     }),
   },
   ui: {
-    label: "购物车条目",
-    labelField: "id",
-    isHidden: false,
+    label: '购物车条目',
+    labelField: 'id',
     listView: {
-      initialColumns: ["cart", "product", "quantity", "price", "amount"],
+      initialColumns: ['cart', 'product', 'quantity', 'price', 'amount'],
     },
   },
-});
+})

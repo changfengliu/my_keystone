@@ -1,6 +1,6 @@
-import { list } from "@keystone-6/core";
-import { allowAll } from "@keystone-6/core/access";
-import { relationship, decimal, timestamp, text, integer } from "@keystone-6/core/fields";
+import { list } from '@keystone-6/core'
+import { allowAll } from '@keystone-6/core/access'
+import { relationship, decimal, timestamp, text, integer } from '@keystone-6/core/fields'
 
 /**
  * 卡项消费记录
@@ -9,11 +9,11 @@ export const CardConsumptionRecord = list({
   access: allowAll,
   fields: {
     card: relationship({
-      ref: "MembershipCard",
+      ref: 'MembershipCard',
       many: false,
     }),
     service: relationship({
-      ref: "Service",
+      ref: 'Service',
       many: false,
     }),
     originalAmount: integer({
@@ -26,12 +26,11 @@ export const CardConsumptionRecord = list({
       defaultValue: 1,
     }),
     consumedAt: timestamp({
-      defaultValue: { kind: "now" },
+      defaultValue: { kind: 'now' },
     }),
     note: text(),
   },
   ui: {
-    label: "卡项消费记录",
-    isHidden: false,
+    label: '卡项消费记录',
   },
-});
+})

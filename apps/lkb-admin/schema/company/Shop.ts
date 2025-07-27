@@ -1,4 +1,5 @@
 import { list } from '@keystone-6/core'
+import { createLocalStorage } from '../utils'
 import { image, relationship, text } from '@keystone-6/core/fields'
 // import { LngAndLatSelector } from '../../extend/fields/LngAndLatSelector'
 
@@ -46,7 +47,7 @@ export default list({
       },
       many: true,
     }),
-    logo: image({ storage: 'my_local_images' }),
+    logo: image({ storage: createLocalStorage('shops/logos') }),
     banners: relationship({ ref: 'Image', many: true }),
     openingHours: text({ validation: { isRequired: true } }),
     remark: text({
@@ -57,7 +58,7 @@ export default list({
   ui: {
     label: '店铺管理',
     labelField: 'name',
-    isHidden: false,
+
     listView: {
       initialColumns: ['name', 'address', 'phone', 'parentShop'],
       initialSort: { field: 'name', direction: 'ASC' },

@@ -1,7 +1,8 @@
-import { list } from "@keystone-6/core";
-import { allowAll } from "@keystone-6/core/access";
-import { text, integer, select, relationship, image } from "@keystone-6/core/fields";
-import { document } from "@keystone-6/fields-document";
+import { list } from '@keystone-6/core'
+import { allowAll } from '@keystone-6/core/access'
+import { text, integer, select, relationship, image } from '@keystone-6/core/fields'
+import { document } from '@keystone-6/fields-document'
+import { createLocalStorage } from '../utils'
 
 /**
  * 商品
@@ -11,11 +12,11 @@ export const Product = list({
   fields: {
     name: text({
       validation: { isRequired: true },
-      isIndexed: "unique",
+      isIndexed: 'unique',
     }),
     sku: text({
       validation: { isRequired: true },
-      isIndexed: "unique",
+      isIndexed: 'unique',
     }),
     price: integer({
       validation: { isRequired: true },
@@ -25,20 +26,20 @@ export const Product = list({
       defaultValue: 0,
     }),
     category: relationship({
-      ref: "ProductCategory",
+      ref: 'ProductCategory',
       many: false,
     }),
     status: select({
       options: [
-        { label: "上架", value: "active" },
-        { label: "下架", value: "inactive" },
-        { label: "售罄", value: "soldout" },
+        { label: '上架', value: 'active' },
+        { label: '下架', value: 'inactive' },
+        { label: '售罄', value: 'soldout' },
       ],
-      defaultValue: "active",
+      defaultValue: 'active',
     }),
-    cover: image({ storage: "my_local_images" }),
+    cover: image({ storage: createLocalStorage('company/products') }),
     images: relationship({
-      ref: "Image",
+      ref: 'Image',
       many: true,
     }),
     description: document({
@@ -55,11 +56,10 @@ export const Product = list({
     }),
   },
   ui: {
-    label: "商品管理",
-    labelField: "name",
-    isHidden: false,
+    label: '商品管理',
+    labelField: 'name',
     listView: {
-      initialColumns: ["name", "sku", "price", "stock", "status", "category"],
+      initialColumns: ['name', 'sku', 'price', 'stock', 'status', 'category'],
     },
   },
-});
+})

@@ -41,6 +41,31 @@ import { ProgressCircle } from '@keystar/ui/progress'
 import type { ListMeta } from '../../../../types'
 import { $emptyTip, $searchEmptyTip } from './EmptyTip'
 
+const arrayToTree = (arr: any[]) => {
+  const rootNodes: any[] = []
+  const nodesMap: any = {}
+  // 第一次遍历：将所有节点存入map
+  arr.forEach(item => (nodesMap[item['id']] = { ...item }))
+  // 第二次遍历：建立父子关系
+  arr.forEach(item => {
+    const node = nodesMap[item['id']]
+    const parentId = item.parent?.id
+    if (!parentId) {
+      rootNodes.push(node)
+    } else {
+      // 非根节点，找到父节点并添加到其 children 中
+      const parent = nodesMap[parentId]
+      if (parent) {
+        if (!parent.children) parent.children = []
+        parent.children.push(node)
+      } else {
+        rootNodes.push(node) // 没有父节点的孤立节点，添加到 root
+      }
+    }
+  })
+  return rootNodes
+}
+
 type ListPageProps = { listKey: string }
 type SelectedKeys = 'all' | Set<number | string>
 
@@ -323,7 +348,67 @@ function ListTable({
 
   let $list
   if (isTreegrid) {
-    $list = <div>treegrid</div>
+    const treegridData = arrayToTree(data?.items ?? [])
+
+    function RenderNodes({ rows, depth = 0 }: { rows: any[]; depth: number }): any {
+      return rows.map(row => {
+        const children = row.children
+        return [
+          <Row href={`/${list.path}/${row?.id}`} key={row?.id}>
+            {key => {
+              const field = list.fields[key]
+              const value = row[key]
+              const CellContent = field.views.Cell
+              if (key == columns[0].id) {
+                return (
+                  <Cell>
+                    <div style={{ paddingLeft: depth * 28 }}>
+                      <Text>{value?.toString()}</Text>
+                    </div>
+                  </Cell>
+                )
+              } else {
+                return (
+                  <Cell>
+                    {CellContent ? (
+                      <CellContent value={value} field={field.controller} item={row} />
+                    ) : (
+                      <Text>{value?.toString()}</Text>
+                    )}
+                  </Cell>
+                )
+              }
+            }}
+          </Row>,
+          children?.length ? RenderNodes({ rows: children, depth: depth + 1 }) : null,
+        ]
+      })
+    }
+
+    $list = (
+      <TableView
+        aria-labelledby={LIST_PAGE_TITLE_ID}
+        selectionMode={selectionMode}
+        onSortChange={onSortChange}
+        sortDescriptor={parseSortQuery(router.query.sortBy) || parseInitialSort(list.initialSort)}
+        density="spacious"
+        overflowMode="truncate"
+        onSelectionChange={setSelectedKeys}
+        selectedKeys={selectedKeys}
+        renderEmptyState={() => (loading ? <ProgressCircle isIndeterminate /> : emptyTip)}
+        flex
+        UNSAFE_style={{
+          opacity: loading && !!data ? 0.5 : undefined,
+        }}
+      >
+        <TableHeader columns={columns}>
+          {({ label, id, ...options }) => (
+            <Column key={id} isRowHeader {...options} children={label} />
+          )}
+        </TableHeader>
+        <TableBody>{RenderNodes({ rows: treegridData, depth: 0 })}</TableBody>
+      </TableView>
+    )
   } else if (isWaterfall) {
     $list = <div>waterfall</div>
   } else {

@@ -310,66 +310,76 @@ function ListTable({
 
   const listType = list.listType
   const isTreegrid = listType === 'treegrid'
+  const isWaterfall = listType === 'waterfall'
   console.log(list)
   console.log(`${list.key} isTreegrid: ${isTreegrid}`)
+  console.log(`${list.key} isWaterfall: ${isWaterfall}`)
+
+  //----------------------------------------------------
+
+  const emptyTip = isConstrained ? $searchEmptyTip : $emptyTip
+
+  //----------------------------------------------------
+
+  let $list
+  if (isTreegrid) {
+    $list = <div>treegrid</div>
+  } else if (isWaterfall) {
+    $list = <div>waterfall</div>
+  } else {
+    $list = (
+      <TableView
+        aria-labelledby={LIST_PAGE_TITLE_ID}
+        selectionMode={selectionMode}
+        onSortChange={onSortChange}
+        sortDescriptor={parseSortQuery(router.query.sortBy) || parseInitialSort(list.initialSort)}
+        density="spacious"
+        overflowMode="truncate"
+        onSelectionChange={setSelectedKeys}
+        selectedKeys={selectedKeys}
+        renderEmptyState={() => (loading ? <ProgressCircle isIndeterminate /> : emptyTip)}
+        flex
+        UNSAFE_style={{
+          opacity: loading && !!data ? 0.5 : undefined,
+        }}
+      >
+        <TableHeader columns={columns}>
+          {({ label, id, ...options }) => (
+            <Column key={id} isRowHeader {...options} children={label} />
+          )}
+        </TableHeader>
+        <TableBody items={data?.items ?? []}>
+          {row => {
+            return (
+              <Row href={`/${list.path}/${row?.id}`}>
+                {key => {
+                  const field = list.fields[key]
+                  const value = row[key]
+                  const CellContent = field.views.Cell
+                  return (
+                    <Cell>
+                      {CellContent ? (
+                        <CellContent value={value} field={field.controller} item={row} />
+                      ) : (
+                        <Text>{value?.toString()}</Text>
+                      )}
+                    </Cell>
+                  )
+                }}
+              </Row>
+            )
+          }}
+        </TableBody>
+      </TableView>
+    )
+  }
+
+  //----------------------------------------------------
 
   return (
     <Fragment>
       <ActionBarContainer flex minHeight="scale.3000">
-        <TableView
-          aria-labelledby={LIST_PAGE_TITLE_ID}
-          selectionMode={selectionMode}
-          onSortChange={onSortChange}
-          sortDescriptor={parseSortQuery(router.query.sortBy) || parseInitialSort(list.initialSort)}
-          density="spacious"
-          overflowMode="truncate"
-          onSelectionChange={setSelectedKeys}
-          selectedKeys={selectedKeys}
-          renderEmptyState={() =>
-            loading ? (
-              <ProgressCircle isIndeterminate />
-            ) : isConstrained ? (
-              $searchEmptyTip
-            ) : (
-              $emptyTip
-            )
-          }
-          flex
-          UNSAFE_style={{
-            opacity: loading && !!data ? 0.5 : undefined,
-          }}
-        >
-          <TableHeader columns={columns}>
-            {({ label, id, ...options }) => (
-              <Column key={id} isRowHeader {...options}>
-                {label}
-              </Column>
-            )}
-          </TableHeader>
-          <TableBody items={data?.items ?? []}>
-            {row => {
-              return (
-                <Row href={`/${list.path}/${row?.id}`}>
-                  {key => {
-                    const field = list.fields[key]
-                    const value = row[key]
-                    const CellContent = field.views.Cell
-                    return (
-                      <Cell>
-                        {CellContent ? (
-                          <CellContent value={value} field={field.controller} item={row} />
-                        ) : (
-                          <Text>{value?.toString()}</Text>
-                        )}
-                      </Cell>
-                    )
-                  }}
-                </Row>
-              )
-            }}
-          </TableBody>
-        </TableView>
-
+        {$list}
         <ActionBar
           selectedItemCount={selectedItemCount}
           onClearSelection={() => setSelectedKeys(new Set())}

@@ -61,6 +61,7 @@ type ListMetaSource_ = {
   groups: FieldGroupMetaSource[]
   graphql: { names: GraphQLNames }
   pageSize: number
+  listType: string
   initialColumns: string[]
   initialSearchFields: string[]
   initialSort: { field: string; direction: 'ASC' | 'DESC' } | null
@@ -149,6 +150,7 @@ export function createAdminMeta(
 
       pageSize: maximumPageSize,
       initialColumns,
+      listType: listConfig.ui?.listView?.listType ?? 'list',
       initialSearchFields,
       initialSort:
         (listConfig.ui?.listView?.initialSort as

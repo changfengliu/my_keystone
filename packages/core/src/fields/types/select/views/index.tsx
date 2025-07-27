@@ -148,7 +148,7 @@ export function Field(props: FieldProps<typeof controller>) {
 }
 
 export const Cell: CellComponent<typeof controller> = ({ value, field }) => {
-  const label = field.options.find(x => x.value === value)?.label
+  const label = field.options.find(x => x.value == value)?.label
   return <Text>{label}</Text>
 }
 

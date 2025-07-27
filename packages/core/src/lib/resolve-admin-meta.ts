@@ -239,6 +239,7 @@ const KeystoneAdminUIListMeta = g.object<ListMetaSource>()({
     graphql: g.field({ type: g.nonNull(KeystoneAdminUIGraphQL) }),
 
     pageSize: g.field({ type: g.nonNull(g.Int) }),
+    listType: g.field({ type: g.nonNull(g.String) }),
     initialColumns: g.field({ type: g.nonNull(g.list(g.nonNull(g.String))) }),
     initialSearchFields: g.field({ type: g.nonNull(g.list(g.nonNull(g.String))) }),
     initialSort: g.field({ type: KeystoneAdminUISort }),

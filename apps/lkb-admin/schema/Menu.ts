@@ -8,6 +8,7 @@ export const Menu = list({
     label: '菜单管理',
     description: '主要用于 Schema 菜单分组',
     listView: {
+      listType: 'treegrid',
       initialColumns: ['name', 'parent', 'path'], // 只显示这三列
     },
   },

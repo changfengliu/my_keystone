@@ -310,6 +310,22 @@ function ListTable({
     }
   })
 
+  const $emptyTip = (
+    <EmptyState icon={textSelectIcon} title="空列表" message="添加第一条数据后即可显示。" />
+  )
+  const $searchEmptyTip = (
+    <EmptyState
+      icon={searchXIcon}
+      title="无结果"
+      message="未找到相关数据。请调整搜索或筛选条件。"
+    />
+  )
+
+  const listType = list.listType
+  const isTreegrid = listType === 'treegrid'
+  console.log(list)
+  console.log(`${list.key} isTreegrid: ${isTreegrid}`)
+
   return (
     <Fragment>
       <ActionBarContainer flex minHeight="scale.3000">
@@ -326,17 +342,9 @@ function ListTable({
             loading ? (
               <ProgressCircle isIndeterminate />
             ) : isConstrained ? (
-              <EmptyState
-                icon={searchXIcon}
-                title="无结果"
-                message="未找到相关数据。请调整搜索或筛选条件。"
-              />
+              $searchEmptyTip
             ) : (
-              <EmptyState
-                icon={textSelectIcon}
-                title="空列表"
-                message="添加第一条数据后即可显示。"
-              />
+              $emptyTip
             )
           }
           flex
@@ -359,7 +367,6 @@ function ListTable({
                     const field = list.fields[key]
                     const value = row[key]
                     const CellContent = field.views.Cell
-                    console.log(field)
                     return (
                       <Cell>
                         {CellContent ? (

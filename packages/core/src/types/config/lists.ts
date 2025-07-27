@@ -113,6 +113,7 @@ export type ListAdminUIConfig<ListTypeInfo extends BaseListTypeInfo> = {
    * Configuration specific to the list view in the Admin UI
    */
   listView?: {
+    listType?: string
     /**
      * The default field mode for fields on the list view for this list.
      * Specific field modes on a per-field basis via a field's config.

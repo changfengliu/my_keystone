@@ -80,6 +80,7 @@ export const adminMetaQuery = gql`
           }
 
           pageSize
+          listType
           initialColumns
           initialSearchFields
           initialSort {
@@ -115,6 +116,7 @@ export type AdminMetaQuery = {
         }
 
         pageSize: number
+        listType: string
         initialColumns: string[]
         initialSearchFields: string[]
         initialSort: ListMeta['initialSort'] | null

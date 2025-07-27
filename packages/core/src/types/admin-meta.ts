@@ -121,6 +121,7 @@ export type ListMeta = {
   }
 
   pageSize: number
+  listType: string
   initialColumns: string[]
   initialSearchFields: string[]
   initialSort: null | { direction: 'ASC' | 'DESC'; field: string }

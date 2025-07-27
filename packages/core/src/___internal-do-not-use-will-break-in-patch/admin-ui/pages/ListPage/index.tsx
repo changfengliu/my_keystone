@@ -5,8 +5,6 @@ import { ActionBar, ActionBarContainer, Item } from '@keystar/ui/action-bar'
 import { ActionButton } from '@keystar/ui/button'
 import { AlertDialog, DialogContainer } from '@keystar/ui/dialog'
 import { Icon } from '@keystar/ui/icon'
-import { textSelectIcon } from '@keystar/ui/icon/icons/textSelectIcon'
-import { searchXIcon } from '@keystar/ui/icon/icons/searchXIcon'
 import { trash2Icon } from '@keystar/ui/icon/icons/trash2Icon'
 import { undo2Icon } from '@keystar/ui/icon/icons/undo2Icon'
 import { HStack, VStack } from '@keystar/ui/layout'
@@ -29,7 +27,6 @@ import type { TypedDocumentNode } from '../../../../admin-ui/apollo'
 import { gql, useMutation, useQuery } from '../../../../admin-ui/apollo'
 import { PageContainer } from '../../../../admin-ui/components/PageContainer'
 import { useList } from '../../../../admin-ui/context'
-import { EmptyState } from '../../../../admin-ui/components/EmptyState'
 import { GraphQLErrorNotice } from '../../../../admin-ui/components/GraphQLErrorNotice'
 import { CreateButtonLink } from '../../../../admin-ui/components/CreateButtonLink'
 import { FieldSelection } from './FieldSelection'
@@ -42,6 +39,7 @@ import { useSelectedFields } from './useSelectedFields'
 import { useSort } from './useSort'
 import { ProgressCircle } from '@keystar/ui/progress'
 import type { ListMeta } from '../../../../types'
+import { $emptyTip, $searchEmptyTip } from './EmptyTip'
 
 type ListPageProps = { listKey: string }
 type SelectedKeys = 'all' | Set<number | string>
@@ -309,17 +307,6 @@ function ListTable({
       allowsSorting: !isConstrained && !data?.items?.length ? false : field.isOrderable,
     }
   })
-
-  const $emptyTip = (
-    <EmptyState icon={textSelectIcon} title="空列表" message="添加第一条数据后即可显示。" />
-  )
-  const $searchEmptyTip = (
-    <EmptyState
-      icon={searchXIcon}
-      title="无结果"
-      message="未找到相关数据。请调整搜索或筛选条件。"
-    />
-  )
 
   const listType = list.listType
   const isTreegrid = listType === 'treegrid'

@@ -1,5 +1,5 @@
-import fs from 'node:fs/promises'
 import { list } from '@keystone-6/core'
+import { createLocalStorage } from './utils'
 import { allowAll } from '@keystone-6/core/access'
 import { text, password, timestamp, image, select, integer } from '@keystone-6/core/fields'
 
@@ -23,17 +23,7 @@ export const User = list({
     phone: text({ validation: { isRequired: true }, isIndexed: 'unique', ui: { label: '手机号' } }),
     email: text({ validation: { isRequired: true }, isIndexed: 'unique', ui: { label: '邮箱' } }),
     avatar: image({
-      storage: {
-        async put(key, stream) {
-          await fs.writeFile(`public/upload/images/avatars/${key}`, stream)
-        },
-        async delete(key) {
-          await fs.unlink(`public/upload/images/avatars/${key}`)
-        },
-        url(key) {
-          return `/upload/images/avatars/${key}`
-        },
-      },
+      storage: createLocalStorage('avatars'),
       ui: {
         label: '头像',
       },

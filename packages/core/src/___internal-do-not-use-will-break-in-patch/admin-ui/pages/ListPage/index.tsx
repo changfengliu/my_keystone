@@ -410,7 +410,51 @@ function ListTable({
       </TableView>
     )
   } else if (isWaterfall) {
-    $list = <div>waterfall</div>
+    $list = (
+      <TableView
+        aria-labelledby={LIST_PAGE_TITLE_ID}
+        selectionMode={selectionMode}
+        onSortChange={onSortChange}
+        sortDescriptor={parseSortQuery(router.query.sortBy) || parseInitialSort(list.initialSort)}
+        density="spacious"
+        overflowMode="truncate"
+        onSelectionChange={setSelectedKeys}
+        selectedKeys={selectedKeys}
+        renderEmptyState={() => (loading ? <ProgressCircle isIndeterminate /> : emptyTip)}
+        flex
+        UNSAFE_style={{
+          opacity: loading && !!data ? 0.5 : undefined,
+        }}
+      >
+        <TableHeader columns={columns}>
+          {({ label, id, ...options }) => (
+            <Column key={id} isRowHeader {...options} children={label} />
+          )}
+        </TableHeader>
+        <TableBody items={data?.items ?? []}>
+          {row => {
+            return (
+              <Row href={`/${list.path}/${row?.id}`}>
+                {key => {
+                  const field = list.fields[key]
+                  const value = row[key]
+                  const CellContent = field.views.Cell
+                  return (
+                    <Cell>
+                      {CellContent ? (
+                        <CellContent value={value} field={field.controller} item={row} />
+                      ) : (
+                        <Text>{value?.toString()}</Text>
+                      )}
+                    </Cell>
+                  )
+                }}
+              </Row>
+            )
+          }}
+        </TableBody>
+      </TableView>
+    )
   } else {
     $list = (
       <TableView

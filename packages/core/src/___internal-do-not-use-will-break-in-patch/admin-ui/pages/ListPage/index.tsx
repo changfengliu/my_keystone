@@ -40,6 +40,7 @@ import { useSort } from './useSort'
 import { ProgressCircle } from '@keystar/ui/progress'
 import type { ListMeta } from '../../../../types'
 import { $emptyTip, $searchEmptyTip } from './EmptyTip'
+import { Checkbox } from '@keystar/ui/checkbox'
 
 const arrayToTree = (arr: any[]) => {
   const rootNodes: any[] = []
@@ -316,6 +317,17 @@ function ListTable({
   const list = useList(listKey)
   const router = useRouter()
   const [selectedKeys, setSelectedKeys] = useState<SelectedKeys>(() => new Set([]))
+  const addSelectedKey = (key: string | number) => {
+    setSelectedKeys(selectedKeys => new Set([...selectedKeys, key]))
+  }
+  const removeSelectedKey = (key: string | number) => {
+    setSelectedKeys(selectedKeys => {
+      const newSet = new Set(selectedKeys)
+      newSet.delete(key) // 正确移除指定 key
+      return newSet
+    })
+  }
+
   const onSortChange = (sortDescriptor: SortDescriptor) => {
     const sortBy =
       sortDescriptor.direction === 'ascending' ? `-${sortDescriptor.column}` : sortDescriptor.column
@@ -426,8 +438,11 @@ function ListTable({
             const imageSrc = imgObj?.url as string
             const imageName = row?.name as string
             return (
-              <div key={row.id as string} style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ flex: 1, minWidth: 0, paddingBottom: 10 }}>
+              <div
+                key={row.id as string}
+                style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
+              >
+                <div style={{ flex: 1, minWidth: 0, paddingBottom: 5 }}>
                   <img
                     onClick={() => (window.location.href = `/${list.path}/${row?.id}`)}
                     src={imageSrc}
@@ -441,9 +456,22 @@ function ListTable({
                     }}
                   />
                 </div>
-                <Text align="center" truncate>
-                  {imageName || 'null'}
-                </Text>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{ flex: 1 }}>
+                    <Text truncate>{imageName || 'null'}</Text>
+                  </div>
+                  <div style={{ marginRight: -15 }}>
+                    <Checkbox
+                      onChange={checked => {
+                        if (checked) {
+                          addSelectedKey(row.id as string)
+                        } else {
+                          removeSelectedKey(row.id as string)
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
             )
           })}

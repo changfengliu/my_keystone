@@ -47,7 +47,7 @@ export default function CustomPage() {
 
   return (
     <PageContainer header={<Heading type="h3">API Request Tester</Heading>}>
-      <KeystarProvider colorScheme="dark">
+      <KeystarProvider>
         <form onSubmit={handleSubmit} style={{ padding: '20px 0' }}>
           <Flex direction="column" gap="large">
             <TextField

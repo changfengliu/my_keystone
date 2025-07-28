@@ -9,7 +9,11 @@ export const Menu = list({
     description: '主要用于 Schema 菜单分组',
     listView: {
       listType: 'treegrid',
-      initialColumns: ['name', 'parent', 'path'], // 只显示这三列
+      initialColumns: ['name', 'parent', 'path', 'sort'],
+      initialSort: {
+        field: 'sort',
+        direction: 'ASC', //TODO: not work, 可能是数值与字符串排序算法的问题。
+      },
     },
   },
   fields: {

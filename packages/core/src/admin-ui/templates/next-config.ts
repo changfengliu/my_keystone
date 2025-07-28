@@ -1,5 +1,6 @@
 export const nextConfigTemplate = (basePath?: string) =>
   `const nextConfig = {
+    devIndicators: false,
     bundlePagesRouterDependencies: true,
     typescript: {
       ignoreBuildErrors: true,

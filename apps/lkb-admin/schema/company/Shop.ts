@@ -19,15 +19,23 @@ export default list({
     name: text({
       validation: { isRequired: true },
       isIndexed: 'unique',
+      ui: {
+        label: '店铺名称',
+      },
     }),
     address: text({
-      ui: { displayMode: 'textarea' },
+      ui: { displayMode: 'textarea', label: '店铺地址' },
       validation: { isRequired: true },
     }),
-    phone: text({ validation: { isRequired: true } }),
+    phone: text({ validation: { isRequired: true }, ui: { label: '联系电话' } }),
     // location: LngAndLatSelector({}),
-    location: text({}),
-    locationLabel: text({}),
+    location: text({
+      ui: {
+        label: '经纬度坐标',
+        description: '格式为经度,纬度, 通过地图坐标选取工具获取，用于客户导航',
+      },
+    }),
+    locationLabel: text({ ui: { label: '导航位置说明, 客户导航时显示的名称' } }),
     // 父子店铺关系
     parent: relationship({
       ref: 'Shop.subShops',
@@ -35,6 +43,7 @@ export default list({
         displayMode: 'select',
         hideCreate: true,
         labelField: 'name',
+        description: '主店铺',
       },
       many: false,
     }),
@@ -47,11 +56,18 @@ export default list({
       },
       many: true,
     }),
-    logo: image({ storage: createLocalStorage('shops/logos') }),
-    banners: relationship({ ref: 'Image', many: true }),
-    openingHours: text({ validation: { isRequired: true } }),
+    logo: image({
+      storage: createLocalStorage('shops/logos'),
+      ui: { label: '店铺Logo', description: '要求正方形，尺寸为512x512' },
+    }),
+    banners: relationship({
+      ref: 'Image',
+      many: true,
+      ui: { label: '首页轮播图', description: '要求9：16，尺寸为1920x1080' },
+    }),
+    openingHours: text({ validation: { isRequired: true }, ui: { label: '营业时间' } }),
     remark: text({
-      ui: { displayMode: 'textarea' },
+      ui: { displayMode: 'textarea', label: '备注' },
     }),
   },
   // 自定义 Admin UI 配置

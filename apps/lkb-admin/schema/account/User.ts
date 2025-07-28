@@ -1,5 +1,5 @@
 import { list } from '@keystone-6/core'
-import { createLocalStorage } from './utils'
+import { createLocalStorage } from '../utils'
 import { allowAll } from '@keystone-6/core/access'
 import { text, password, timestamp, image, select, integer } from '@keystone-6/core/fields'
 

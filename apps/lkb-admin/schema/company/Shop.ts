@@ -29,7 +29,7 @@ export default list({
     location: text({}),
     locationLabel: text({}),
     // 父子店铺关系
-    parentShop: relationship({
+    parent: relationship({
       ref: 'Shop.subShops',
       ui: {
         displayMode: 'select',
@@ -40,7 +40,7 @@ export default list({
     }),
     // 反向关联用于树形展示
     subShops: relationship({
-      ref: 'Shop.parentShop',
+      ref: 'Shop.parent',
       ui: {
         createView: { fieldMode: 'hidden' },
         itemView: { fieldMode: 'hidden' },
@@ -58,9 +58,9 @@ export default list({
   ui: {
     label: '店铺管理',
     labelField: 'name',
-
     listView: {
-      initialColumns: ['name', 'address', 'phone', 'parentShop'],
+      listType: 'treegrid',
+      initialColumns: ['name', 'address', 'phone', 'parent'],
       initialSort: { field: 'name', direction: 'ASC' },
     },
   },

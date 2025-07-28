@@ -1,4 +1,4 @@
-import { User } from './schema/User'
+import { User } from './schema/account/User'
 import Shop from './schema/company/Shop'
 import Article from './schema/Article'
 import Tag from './schema/Tag'
@@ -12,10 +12,10 @@ import { Product } from './schema/mall/Product'
 import { Cart } from './schema/mall/Cart'
 import { CartItem } from './schema/mall/CartItem'
 import { Employee } from './schema/company/Employee'
-import { Image } from './schema/image/Image'
-import { Album } from './schema/image/Album'
-import { Menu } from './schema/Menu'
-import { WechatUser } from './schema/WechatUser'
+import { Image } from './schema/assets/Image'
+import { Album } from './schema/assets/Album'
+import { Menu } from './schema/admin/Menu'
+import { WechatUser } from './schema/weichat/WechatUser'
 
 //------------------------------------------
 

@@ -1054,7 +1054,7 @@ type Shop {
   phone: String
   location: String
   locationLabel: String
-  parentShop: Shop
+  parent: Shop
   subShops(where: ShopWhereInput! = {}, orderBy: [ShopOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ShopWhereUniqueInput): [Shop!]
   subShopsCount(where: ShopWhereInput! = {}): Int
   logo: ImageFieldOutput
@@ -1079,7 +1079,7 @@ input ShopWhereInput {
   phone: StringFilter
   location: StringFilter
   locationLabel: StringFilter
-  parentShop: ShopWhereInput
+  parent: ShopWhereInput
   subShops: ShopManyRelationFilter
   banners: ImageManyRelationFilter
   openingHours: StringFilter
@@ -1109,7 +1109,7 @@ input ShopUpdateInput {
   phone: String
   location: String
   locationLabel: String
-  parentShop: ShopRelateToOneForUpdateInput
+  parent: ShopRelateToOneForUpdateInput
   subShops: ShopRelateToManyForUpdateInput
   logo: ImageFieldInput
   banners: ImageRelateToManyForUpdateInput
@@ -1135,7 +1135,7 @@ input ShopCreateInput {
   phone: String
   location: String
   locationLabel: String
-  parentShop: ShopRelateToOneForCreateInput
+  parent: ShopRelateToOneForCreateInput
   subShops: ShopRelateToManyForCreateInput
   logo: ImageFieldInput
   banners: ImageRelateToManyForCreateInput

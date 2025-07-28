@@ -1,6 +1,7 @@
+import { componentBlocks } from './component-blocks/index'
+
 export const toolbarOptions_Full = {
   formatting: {
-    // To disable a specific feature you can simply omit it from the configuration.
     inlineMarks: {
       bold: true,
       italic: true,
@@ -31,5 +32,14 @@ export const toolbarOptions_Full = {
   layouts: [
     [1, 1],
     [1, 1, 1],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1, 1],
+    [1, 2],
+    [1, 3],
   ],
+  ui: {
+    // 这儿的路径是相对于根目录的。
+    views: './extend/fields/document/component-blocks/index',
+  },
+  componentBlocks,
 }

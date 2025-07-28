@@ -2,8 +2,7 @@ import { list } from '@keystone-6/core'
 import { allowAll } from '@keystone-6/core/access'
 import { document } from '@keystone-6/fields-document'
 import { text, relationship, select, timestamp } from '@keystone-6/core/fields'
-// import { componentBlocks } from '../extend/fields/document/component-blocks/index'
-// @ts-ignore
+// @ts-expect-error
 import { toolbarOptions_Full } from '../extend/fields/document/toolbar-options'
 
 /**
@@ -13,14 +12,7 @@ export default list({
   access: allowAll,
   fields: {
     title: text({ validation: { isRequired: true } }),
-    content: document({
-      ...toolbarOptions_Full,
-      ui: {
-        // 这儿的路径是相对于根目录的。
-        // views: "./extend/fields/document/component-blocks/index",
-      },
-      // componentBlocks,
-    }),
+    content: document(toolbarOptions_Full),
     publishedAt: timestamp(),
     status: select({
       defaultValue: 'draft',
@@ -37,12 +29,7 @@ export default list({
       // a Post can have many Tags, not just one
       many: true,
       ui: {
-        displayMode: 'cards',
-        cardFields: ['name'],
-        inlineEdit: { fields: ['name'] },
-        linkToItem: true,
-        inlineConnect: true,
-        inlineCreate: { fields: ['name'] },
+        displayMode: 'select',
       },
     }),
   },

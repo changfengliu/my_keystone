@@ -34,7 +34,7 @@ export const dividerButton = (
   <TooltipTrigger delay={200}>
     <DividerButton />
     <Tooltip>
-      <Text>Divider</Text>
+      <Text>分隔线</Text>
       <Kbd>---</Kbd>
     </Tooltip>
   </TooltipTrigger>

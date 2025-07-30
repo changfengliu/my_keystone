@@ -75,6 +75,16 @@ model Menu {
   @@index([parentId])
 }
 
+model App {
+  id          String  @id @default(cuid())
+  name        String  @default("")
+  description String  @default("")
+  logo        String  @default("")
+  type        String? @default("web")
+  domain      String  @default("")
+  isEnabled   Int?    @default(1)
+}
+
 model WechatUser {
   id         String  @id @default(cuid())
   openid     String  @unique @default("")

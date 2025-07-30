@@ -462,6 +462,66 @@ input MenuRelateToOneForCreateInput {
   connect: MenuWhereUniqueInput
 }
 
+type App {
+  id: ID!
+  name: String
+  description: String
+  logo: String
+  type: String
+  domain: String
+  isEnabled: Int
+}
+
+input AppWhereUniqueInput {
+  id: ID
+}
+
+input AppWhereInput {
+  AND: [AppWhereInput!]
+  OR: [AppWhereInput!]
+  NOT: [AppWhereInput!]
+  id: IDFilter
+  name: StringFilter
+  description: StringFilter
+  logo: StringFilter
+  type: StringNullableFilter
+  domain: StringFilter
+  isEnabled: IntNullableFilter
+}
+
+input AppOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+  description: OrderDirection
+  logo: OrderDirection
+  type: OrderDirection
+  domain: OrderDirection
+  isEnabled: OrderDirection
+}
+
+input AppUpdateInput {
+  name: String
+  description: String
+  logo: String
+  type: String
+  domain: String
+  isEnabled: Int
+}
+
+input AppUpdateArgs {
+  where: AppWhereUniqueInput!
+  data: AppUpdateInput!
+}
+
+input AppCreateInput {
+  name: String
+  description: String
+  logo: String
+  type: String
+  domain: String
+  isEnabled: Int
+}
+
 type WechatUser {
   id: ID!
   openid: String
@@ -1506,6 +1566,12 @@ type Mutation {
   updateMenus(data: [MenuUpdateArgs!]!): [Menu]
   deleteMenu(where: MenuWhereUniqueInput!): Menu
   deleteMenus(where: [MenuWhereUniqueInput!]!): [Menu]
+  createApp(data: AppCreateInput!): App
+  createApps(data: [AppCreateInput!]!): [App]
+  updateApp(where: AppWhereUniqueInput!, data: AppUpdateInput!): App
+  updateApps(data: [AppUpdateArgs!]!): [App]
+  deleteApp(where: AppWhereUniqueInput!): App
+  deleteApps(where: [AppWhereUniqueInput!]!): [App]
   createWechatUser(data: WechatUserCreateInput!): WechatUser
   createWechatUsers(data: [WechatUserCreateInput!]!): [WechatUser]
   updateWechatUser(where: WechatUserWhereUniqueInput!, data: WechatUserUpdateInput!): WechatUser
@@ -1647,6 +1713,9 @@ type Query {
   menu(where: MenuWhereUniqueInput!): Menu
   menus(where: MenuWhereInput! = {}, orderBy: [MenuOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: MenuWhereUniqueInput): [Menu!]
   menusCount(where: MenuWhereInput! = {}): Int
+  app(where: AppWhereUniqueInput!): App
+  apps(where: AppWhereInput! = {}, orderBy: [AppOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: AppWhereUniqueInput): [App!]
+  appsCount(where: AppWhereInput! = {}): Int
   wechatUser(where: WechatUserWhereUniqueInput!): WechatUser
   wechatUsers(where: WechatUserWhereInput! = {}, orderBy: [WechatUserOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: WechatUserWhereUniqueInput): [WechatUser!]
   wechatUsersCount(where: WechatUserWhereInput! = {}): Int

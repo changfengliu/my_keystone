@@ -15,6 +15,7 @@ import { Employee } from './schema/company/Employee'
 import { Image } from './schema/assets/Image'
 import { Album } from './schema/assets/Album'
 import { Menu } from './schema/admin/Menu'
+import { App } from './schema/admin/App'
 import { WechatUser } from './schema/weichat/WechatUser'
 
 //------------------------------------------
@@ -23,6 +24,7 @@ const membershipLists = { CardType, MembershipCard, CardConsumptionRecord }
 const companyLists = { Service, ServiceCategory, Employee, Shop }
 const mallLists = { ProductCategory, Product, Cart, CartItem }
 const imageLists = { Image, Album }
+const adminLists = { Menu, App }
 
 //------------------------------------------
 
@@ -30,7 +32,7 @@ export const lists = {
   User,
   Article,
   Tag,
-  Menu,
+  ...adminLists,
   WechatUser,
   ...mallLists,
   ...companyLists,

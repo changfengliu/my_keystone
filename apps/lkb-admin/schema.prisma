@@ -42,22 +42,38 @@ model User {
 }
 
 model Article {
-  id          String    @id @default(cuid())
-  title       String    @default("")
-  content     Json      @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  id          String           @id @default(cuid())
+  title       String           @default("")
+  content     Json             @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
   publishedAt DateTime?
-  status      String?   @default("draft")
-  author      User?     @relation("Article_author", fields: [authorId], references: [id])
-  authorId    String?   @map("author")
-  tags        Tag[]     @relation("Article_tags")
+  status      String?          @default("draft")
+  author      User?            @relation("Article_author", fields: [authorId], references: [id])
+  authorId    String?          @map("author")
+  category    ArticleCategory? @relation("Article_category", fields: [categoryId], references: [id])
+  categoryId  String?          @map("category")
+  tags        Tag[]            @relation("Article_tags")
 
   @@index([authorId])
+  @@index([categoryId])
 }
 
 model Tag {
   id    String    @id @default(cuid())
   name  String    @default("")
   posts Article[] @relation("Article_tags")
+}
+
+model ArticleCategory {
+  id                          String            @id @default(cuid())
+  name                        String            @unique @default("")
+  status                      String?           @default("draft")
+  parent                      ArticleCategory?  @relation("ArticleCategory_parent", fields: [parentId], references: [id])
+  parentId                    String?           @map("parent")
+  order                       Int               @default(0)
+  from_Article_category       Article[]         @relation("Article_category")
+  from_ArticleCategory_parent ArticleCategory[] @relation("ArticleCategory_parent")
+
+  @@index([parentId])
 }
 
 model Menu {

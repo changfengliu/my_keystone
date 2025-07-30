@@ -1,7 +1,7 @@
 import { User } from './schema/account/User'
 import Shop from './schema/company/Shop'
-import Article from './schema/Article'
-import Tag from './schema/Tag'
+import Article from './schema/content/Article'
+import Tag from './schema/content/Tag'
 import { Service } from './schema/company/Service'
 import { ServiceCategory } from './schema/company/ServiceCategory'
 import { CardType } from './schema/membership/CardType'
@@ -17,6 +17,7 @@ import { Album } from './schema/assets/Album'
 import { Menu } from './schema/admin/Menu'
 import { App } from './schema/admin/App'
 import { WechatUser } from './schema/weichat/WechatUser'
+import { ArticleCategory } from './schema/content/ArticleCategory'
 
 //------------------------------------------
 
@@ -25,15 +26,17 @@ const companyLists = { Service, ServiceCategory, Employee, Shop }
 const mallLists = { ProductCategory, Product, Cart, CartItem }
 const imageLists = { Image, Album }
 const adminLists = { Menu, App }
+const contentLists = { Article, Tag, ArticleCategory }
+const accountLists = { User }
+const wechatLists = { WechatUser }
 
 //------------------------------------------
 
 export const lists = {
-  User,
-  Article,
-  Tag,
+  ...accountLists,
+  ...contentLists,
   ...adminLists,
-  WechatUser,
+  ...wechatLists,
   ...mallLists,
   ...companyLists,
   ...membershipLists,

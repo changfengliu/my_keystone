@@ -3,7 +3,7 @@ import { allowAll } from '@keystone-6/core/access'
 import { document } from '@keystone-6/fields-document'
 import { text, relationship, select, timestamp } from '@keystone-6/core/fields'
 // @ts-expect-error
-import { toolbarOptions_Full } from '../extend/fields/document/toolbar-options'
+import { toolbarOptions_Full } from '../../extend/fields/document/toolbar-options'
 
 /**
  * 文章
@@ -23,6 +23,14 @@ export default list({
       ui: { displayMode: 'segmented-control' },
     }),
     author: relationship({ ref: 'User', many: false }),
+    category: relationship({
+      ref: 'ArticleCategory',
+      many: false,
+      ui: {
+        displayMode: 'select',
+        labelField: 'name',
+      },
+    }),
     tags: relationship({
       // we could have used 'Tag', but then the relationship would only be 1-way
       ref: 'Tag.posts',
@@ -35,5 +43,8 @@ export default list({
   },
   ui: {
     label: '文章管理',
+    listView: {
+      initialColumns: ['title', 'status', 'category', 'tags', 'publishedAt'],
+    },
   },
 })

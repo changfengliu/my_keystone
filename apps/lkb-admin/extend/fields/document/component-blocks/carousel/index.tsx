@@ -3,7 +3,7 @@ import { css } from '@keystar/ui/style'
 import { component, fields, NotEditable } from '@keystone-6/fields-document/component-blocks'
 
 export const carousel = component({
-  label: 'Carousel',
+  label: '旋转木马',
   preview: function Preview(props) {
     return (
       <NotEditable>
@@ -62,10 +62,10 @@ export const carousel = component({
   schema: {
     items: fields.array(
       fields.object({
-        title: fields.text({ label: 'Title' }),
+        title: fields.text({ label: '标题' }),
         imageSrc: fields.url({
-          label: 'Image URL',
-          defaultValue: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809',
+          label: '图片 URL',
+          defaultValue: '/assets/images/placeholder.jpeg',
         }),
       })
     ),

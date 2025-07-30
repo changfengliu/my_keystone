@@ -1,35 +1,39 @@
-import { component, fields, NotEditable } from '@keystone-6/fields-document/component-blocks'
 import { css } from '@keystar/ui/style'
+import { component, fields, NotEditable } from '@keystone-6/fields-document/component-blocks'
 
-export const image = component({
+export const Image = component({
   label: '图片',
   schema: {
-    url: fields.url({
+    imageSrc: fields.text({
       label: '图片 URL',
-      defaultValue: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+      defaultValue: '/assets/images/placeholder.jpeg',
     }),
-    altText: fields.text({
-      label: 'Alt text',
-      defaultValue: '图片',
+    caption: fields.conditional(fields.checkbox({ label: '显示图片说明' }), {
+      false: fields.empty(),
+      true: fields.child({
+        kind: 'block',
+        placeholder: '写一个图片说明...',
+        formatting: 'inherit',
+        links: 'inherit',
+      }),
     }),
   },
-  preview: function YouTubeVideo(props) {
-    const url = props.fields.url.value
-
+  preview: function Image(props) {
     return (
-      <NotEditable>
-        <div
-          className={css({
-            position: 'relative',
-          })}
-        >
+      <div>
+        <NotEditable>
           <img
-            src={url}
-            alt={props.fields.altText.value}
-            style={{ maxWidth: '100%', display: 'block' }}
+            src={props.fields.imageSrc.value}
+            className={css({
+              width: '100%',
+              minHeight: 100,
+            })}
           />
-        </div>
-      </NotEditable>
+        </NotEditable>
+        {props.fields.caption.discriminant ? (
+          <div className={css({ textAlign: 'center' })}>{props.fields.caption.value.element}</div>
+        ) : null}
+      </div>
     )
   },
 })

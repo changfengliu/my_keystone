@@ -90,7 +90,7 @@ export function ChromefulComponentBlockElement(props: {
               }
               return (
                 <Dialog>
-                  <Heading>Edit {props.componentBlock.label}</Heading>
+                  <Heading>编辑【{props.componentBlock.label}】属性</Heading>
                   <FormValue props={props.previewProps} onClose={onCloseEditMode} />
                 </Dialog>
               )
@@ -158,7 +158,7 @@ function DefaultToolbarWithChrome({
     <NotEditable>
       <Flex direction="column" gap="medium">
         <Flex alignItems="center" gap="regular" UNSAFE_style={{ userSelect: 'none' }}>
-          <ActionButton onPress={() => onShowEditMode()}>Edit</ActionButton>
+          <ActionButton onPress={() => onShowEditMode()}>编辑</ActionButton>
           <TooltipTrigger>
             <ActionButton prominence="low" onPress={onRemove}>
               <Icon src={trash2Icon} />
@@ -210,9 +210,9 @@ function FormValue({
         </Flex>
       </Content>
       <ButtonGroup>
-        <Button onPress={onClose}>Cancel</Button>
+        <Button onPress={onClose}>取消</Button>
         <Button form={formId} prominence="high" type="submit">
-          Done
+          确定
         </Button>
       </ButtonGroup>
     </>

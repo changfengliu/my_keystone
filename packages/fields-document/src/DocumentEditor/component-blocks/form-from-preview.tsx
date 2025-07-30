@@ -203,7 +203,7 @@ function ArrayFieldPreview(props: DefaultFieldProps<'array'>) {
               onChange([...elements.map(x => ({ key: x.key })), { key: undefined }])
             }}
           >
-            Add
+            添加选项
           </ActionButton>
           <DialogContainer
             onDismiss={() => {
@@ -228,7 +228,7 @@ function ArrayFieldPreview(props: DefaultFieldProps<'array'>) {
 
               return (
                 <Dialog>
-                  <Heading>Edit item</Heading>
+                  <Heading>编辑选项</Heading>
                   <Content>
                     <ArrayFieldItemModalContent
                       onChange={onModalChange}
@@ -243,7 +243,7 @@ function ArrayFieldPreview(props: DefaultFieldProps<'array'>) {
                         setModalState('closed')
                       }}
                     >
-                      Cancel
+                      取消
                     </Button>
                     <Button
                       prominence="high"
@@ -259,7 +259,7 @@ function ArrayFieldPreview(props: DefaultFieldProps<'array'>) {
                         setModalState('closed')
                       }}
                     >
-                      Done
+                      确定
                     </Button>
                   </ButtonGroup>
                 </Dialog>
@@ -561,7 +561,7 @@ function ArrayFieldListView<Element extends ComponentSchema>(
       }}
     >
       {item => {
-        const label = props.schema.itemLabel?.(item) || `Item ${props.elements.indexOf(item) + 1}`
+        const label = props.schema.itemLabel?.(item) || `选项 ${props.elements.indexOf(item) + 1}`
         return (
           <Item key={item.key} textValue={label}>
             <Text>{label}</Text>

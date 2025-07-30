@@ -5,16 +5,16 @@ export const callout = component({
   preview: function (props) {
     return <Callout tone={props.fields.tone.value}>{props.fields.content.element}</Callout>
   },
-  label: 'Callout',
+  label: '提示面板',
   chromeless: true,
   schema: {
     tone: fields.select({
       label: 'Tone',
       options: [
-        { value: 'info', label: 'Info' },
-        { value: 'caution', label: 'Caution' },
-        { value: 'positive', label: 'Positive' },
-        { value: 'critical', label: 'Critical' },
+        { value: 'info', label: '消息' },
+        { value: 'caution', label: '警告' },
+        { value: 'positive', label: '成功' },
+        { value: 'critical', label: '错误' },
       ],
       defaultValue: 'info',
     }),

@@ -142,7 +142,7 @@ export function DocumentEditor({
   componentBlocks,
   relationships,
   documentFeatures,
-  initialExpanded = false,
+  initialExpanded = true,
   ...props
 }: {
   onChange: undefined | ((value: Descendant[]) => void)

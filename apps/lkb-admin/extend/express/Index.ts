@@ -25,11 +25,19 @@ export default function extendExpressApp(
     res.json({ success: true, data: serverInfo })
   })
 
+  // 全站静态资源
+  app.use(
+    '/assets',
+    express.static('public/assets', { index: false, redirect: false, lastModified: false })
+  )
+
+  // 上传的图片
   app.use(
     '/upload/images',
     express.static('public/upload/images', { index: false, redirect: false, lastModified: false })
   )
 
+  // 上传的文件
   app.use(
     '/upload/files',
     express.static('public/upload/files', {

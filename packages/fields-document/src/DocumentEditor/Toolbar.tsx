@@ -104,7 +104,7 @@ export function Toolbar({
                     >
                       <Icon src={viewState.expanded ? minimizeIcon : maximizeIcon} />
                     </EditorToolbarButton>
-                    <Tooltip>{viewState.expanded ? 'Collapse' : 'Expand'}</Tooltip>
+                    <Tooltip>{viewState.expanded ? '折叠' : '展开'}</Tooltip>
                   </TooltipTrigger>
                 </EditorToolbarGroup>
               )

@@ -10,7 +10,6 @@ export const Cell: CellComponent<typeof controller> = ({ value }) => {
       style={{
         alignItems: 'center',
         display: 'flex',
-        width: 30,
         height: 30,
         lineHeight: 0,
       }}

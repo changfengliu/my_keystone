@@ -142,5 +142,8 @@ export const User = list({
   ui: {
     label: '用户管理',
     path: 'system-users',
+    listView: {
+      initialColumns: ['name', 'nickname', 'phone', 'avatar', 'gender', 'userType', 'status'],
+    },
   },
 })

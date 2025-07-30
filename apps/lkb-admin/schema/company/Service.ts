@@ -60,7 +60,7 @@ export const Service = list({
     label: '服务项目管理',
     labelField: 'title',
     listView: {
-      initialColumns: ['title', 'price', 'duration', 'status', 'serviceCategory', 'order'],
+      initialColumns: ['title', 'price', 'duration', 'status', 'serviceCategory', 'order', 'cover'],
       initialSort: { field: 'order', direction: 'ASC' },
     },
   },

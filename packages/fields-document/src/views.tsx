@@ -35,7 +35,7 @@ export function Field(props: FieldProps<typeof controller>) {
 }
 
 function serialize(nodes: Node[]) {
-  return nodes.map((n: Node) => Node.string(n)).join('\n')
+  return nodes?.map((n: Node) => Node.string(n)).join('\n')
 }
 
 export const Cell: CellComponent<typeof controller> = ({ value }) => {

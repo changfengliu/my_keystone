@@ -19,7 +19,7 @@ export function addRelationshipData(
   componentBlocks: Record<string, ComponentBlock>
 ): Promise<Descendant[]> {
   return Promise.all(
-    nodes.map(async (node): Promise<Descendant> => {
+    nodes?.map(async (node): Promise<Descendant> => {
       if (node.type === 'relationship') {
         const relationship = relationships[node.relationship]
         if (!relationship) return node

@@ -136,9 +136,9 @@ const HeadingMenu = ({
   const { editor, textStyles } = useToolbarState()
   const isDisabled = textStyles.allowedHeadingLevels.length === 0
   const items = useMemo(() => {
-    let resolvedItems: HeadingItem[] = [{ name: 'Paragraph', id: 'normal' }]
+    let resolvedItems: HeadingItem[] = [{ name: '段落', id: 'normal' }]
     headingLevels.forEach(level => {
-      resolvedItems.push({ name: `Heading ${level}`, id: level.toString() })
+      resolvedItems.push({ name: `标题 ${level}`, id: level.toString() })
     })
     return resolvedItems
   }, [headingLevels])

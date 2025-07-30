@@ -1,7 +1,7 @@
 import { list } from '@keystone-6/core'
 import { createLocalStorage } from '../utils'
 import { allowAll } from '@keystone-6/core/access'
-import { text, select, relationship, timestamp, image } from '@keystone-6/core/fields'
+import { text, select, multiselect, relationship, timestamp, image } from '@keystone-6/core/fields'
 
 /**
  * 员工
@@ -27,15 +27,16 @@ export const Employee = list({
       many: false,
       ui: { label: '所属店铺' },
     }),
-    role: select({
+    role: multiselect({
+      type: 'enum',
       options: [
         { label: '店长', value: 'manager' },
         { label: '美容师', value: 'beautician' },
         { label: '前台', value: 'receptionist' },
         { label: '助理', value: 'assistant' },
       ],
-      defaultValue: 'beautician',
-      ui: { label: '职位', displayMode: 'segmented-control' },
+      defaultValue: ['beautician'],
+      ui: { label: '职位', displayMode: 'checkboxes' },
     }),
     status: select({
       options: [

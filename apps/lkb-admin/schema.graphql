@@ -1089,12 +1089,19 @@ type Employee {
   phone: String
   avatar: ImageFieldOutput
   shop: Shop
-  role: String
+  role: [EmployeeRoleType!]
   status: String
   skills: String
   joinDate: DateTime
   leaveDate: DateTime
   remark: String
+}
+
+enum EmployeeRoleType {
+  manager
+  beautician
+  receptionist
+  assistant
 }
 
 input EmployeeWhereUniqueInput {
@@ -1110,7 +1117,6 @@ input EmployeeWhereInput {
   name: StringFilter
   phone: StringFilter
   shop: ShopWhereInput
-  role: StringNullableFilter
   status: StringNullableFilter
   skills: StringFilter
   joinDate: DateTimeNullableFilter
@@ -1122,7 +1128,6 @@ input EmployeeOrderByInput {
   id: OrderDirection
   name: OrderDirection
   phone: OrderDirection
-  role: OrderDirection
   status: OrderDirection
   skills: OrderDirection
   joinDate: OrderDirection
@@ -1135,7 +1140,7 @@ input EmployeeUpdateInput {
   phone: String
   avatar: ImageFieldInput
   shop: ShopRelateToOneForUpdateInput
-  role: String
+  role: [EmployeeRoleType!]
   status: String
   skills: String
   joinDate: DateTime
@@ -1159,7 +1164,7 @@ input EmployeeCreateInput {
   phone: String
   avatar: ImageFieldInput
   shop: ShopRelateToOneForCreateInput
-  role: String
+  role: [EmployeeRoleType!]
   status: String
   skills: String
   joinDate: DateTime

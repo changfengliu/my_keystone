@@ -135,7 +135,7 @@ export function Field(props: FieldProps<typeof controller>) {
 
   return (
     <NullableFieldWrapper
-      isAllowed={!isRequired}
+      isAllowed={!isRequired && false} // select 固定不允许为 null，因为已设置默认值。
       autoFocus={isNull && autoFocus}
       label={field.label}
       isReadOnly={isReadOnly}

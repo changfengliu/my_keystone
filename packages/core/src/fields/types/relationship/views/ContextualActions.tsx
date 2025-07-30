@@ -40,7 +40,7 @@ function ContextualActionsMenu(props: RelationshipProps) {
       result.push({
         icon: plusIcon,
         key: 'add',
-        label: `Add ${foreignList.singular.toLocaleLowerCase()}`,
+        label: `添加 ${foreignList.singular.toLocaleLowerCase()}`,
       })
     }
 
@@ -100,9 +100,9 @@ function ContextualActionsMenu(props: RelationshipProps) {
 export function useRelatedItemLabel(field: RelationshipController) {
   const foreignList = useList(field.refListKey)
   if (field.many) {
-    return `View related ${foreignList.plural.toLocaleLowerCase()}`
+    return `查看 related ${foreignList.plural.toLocaleLowerCase()}`
   }
-  return `View ${foreignList.singular.toLocaleLowerCase()}`
+  return `查看 ${foreignList.singular.toLocaleLowerCase()}`
 }
 
 export function useRelatedItemHref({

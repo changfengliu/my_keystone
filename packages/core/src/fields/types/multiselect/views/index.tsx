@@ -70,6 +70,7 @@ function CheckboxesModeField(props: FieldProps<typeof controller>) {
   const { field, onChange, value } = props
   return (
     <CheckboxGroup
+      orientation="horizontal"
       label={field.label}
       description={field.description}
       isReadOnly={onChange === undefined}

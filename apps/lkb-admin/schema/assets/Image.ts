@@ -9,9 +9,9 @@ import { text, image } from '@keystone-6/core/fields'
 export const Image = list({
   access: allowAll,
   fields: {
-    name: text({ validation: { isRequired: true } }),
-    altText: text(),
-    image: image({ storage: createLocalStorage('albums/images') }),
+    name: text({ validation: { isRequired: true }, ui: { label: '标题' } }),
+    altText: text({ ui: { label: '替代文本' } }),
+    image: image({ storage: createLocalStorage('albums/images'), ui: { label: '图片' } }),
   },
   ui: {
     label: '图片管理',

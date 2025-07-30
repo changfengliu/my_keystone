@@ -216,7 +216,7 @@ model Employee {
   avatar_height    Int?
   shop             Shop?     @relation("Employee_shop", fields: [shopId], references: [id])
   shopId           String?   @map("shop")
-  role             String?   @default("beautician")
+  role             Json      @default("[\"beautician\"]")
   status           String?   @default("active")
   skills           String    @default("")
   joinDate         DateTime? @default(now())

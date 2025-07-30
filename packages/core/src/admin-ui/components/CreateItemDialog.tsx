@@ -22,7 +22,7 @@ export function BuildItemDialog({
 
   return (
     <Dialog>
-      <Heading>Add {list.singular}</Heading>
+      <Heading>添加 {list.singular}</Heading>
 
       <Content>
         <form
@@ -44,9 +44,9 @@ export function BuildItemDialog({
       </Content>
 
       <ButtonGroup>
-        <Button onPress={dialogState.dismiss}>Cancel</Button>
+        <Button onPress={dialogState.dismiss}>取消</Button>
         <Button form={formId} prominence="high" type="submit">
-          Add
+          保存
         </Button>
       </ButtonGroup>
     </Dialog>

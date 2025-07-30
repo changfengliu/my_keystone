@@ -8,7 +8,6 @@ import { bookTextIcon } from '@keystar/ui/icon/icons/bookTextIcon'
 import { constructionIcon } from '@keystar/ui/icon/icons/constructionIcon'
 import { fileJson2Icon } from '@keystar/ui/icon/icons/fileJson2Icon'
 import { githubIcon } from '@keystar/ui/icon/icons/githubIcon'
-import { heartHandshakeIcon } from '@keystar/ui/icon/icons/heartHandshakeIcon'
 import { MenuTrigger, Menu, Item } from '@keystar/ui/menu'
 import { Divider, HStack, VStack } from '@keystar/ui/layout'
 import {
@@ -127,19 +126,13 @@ export function DeveloperResourcesMenu() {
     <>
       <MenuTrigger>
         <TooltipTrigger>
-          <ActionButton aria-label="Developer resources">
+          <ActionButton aria-label="开发文档">
             <Icon src={constructionIcon} />
           </ActionButton>
-          <Tooltip>Developer resources</Tooltip>
+          <Tooltip>开发文档</Tooltip>
         </TooltipTrigger>
-        <Menu
-          onAction={key => {
-            if (key === 'community') {
-              setDialogIsOpen(true)
-            }
-          }}
-        >
-          <Item href={apiPath} textValue="API explorer">
+        <Menu>
+          <Item target="_blank" href={apiPath} textValue="API explorer">
             <Icon src={fileJson2Icon} />
             <Text>API explorer</Text>
           </Item>
@@ -149,15 +142,11 @@ export function DeveloperResourcesMenu() {
             textValue="GitHub repository"
           >
             <Icon src={githubIcon} />
-            <Text>GitHub repository</Text>
+            <Text>GitHub仓库</Text>
           </Item>
           <Item target="_blank" href="https://keystonejs.com" textValue="Documentation">
             <Icon src={bookTextIcon} />
-            <Text>Documentation</Text>
-          </Item>
-          <Item key="community" textValue="Community">
-            <Icon src={heartHandshakeIcon} />
-            <Text>Community</Text>
+            <Text>Keystone6 文档</Text>
           </Item>
         </Menu>
       </MenuTrigger>

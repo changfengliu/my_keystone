@@ -146,12 +146,12 @@ function getPaginationStats({
   if (total > pageSize) {
     const start = pageSize * (currentPage - 1) + 1
     const end = Math.min(start + pageSize - 1, total)
-    stats = `${start} - ${end} 共 ${total} 条`
+    stats = `当前页 ${start} - ${end}，共 ${total} 条`
   } else {
     if (total > 1 && plural) {
-      stats = `${total} ${plural}`
+      stats = `共 ${total} 条`
     } else if (total === 1 && singular) {
-      stats = `${total} ${singular}`
+      stats = `共 ${total} 条`
     }
   }
   return { stats }

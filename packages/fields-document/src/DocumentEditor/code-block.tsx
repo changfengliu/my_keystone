@@ -47,7 +47,7 @@ export const codeButton = (
   <TooltipTrigger>
     <CodeButton />
     <Tooltip>
-      <Text>Code block</Text>
+      <Text>代码块</Text>
       <Kbd>```</Kbd>
     </Tooltip>
   </TooltipTrigger>

@@ -41,7 +41,7 @@ export const blockquoteButton = (
   <TooltipTrigger>
     <BlockquoteButton />
     <Tooltip>
-      <Text>Quote</Text>
+      <Text>引用</Text>
       <Kbd>{'>⎵'}</Kbd>
     </Tooltip>
   </TooltipTrigger>

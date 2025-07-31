@@ -161,7 +161,7 @@ export const LayoutsButton = ({ layouts }: { layouts: DocumentFeatures['layouts'
         >
           {layoutsIcon}
         </EditorToolbarButton>
-        <Tooltip>Layouts</Tooltip>
+        <Tooltip>布局</Tooltip>
       </TooltipTrigger>
     ),
     [editor, isSelected, layouts]

@@ -8,6 +8,10 @@ import type {
 import type { KeystoneContext } from '@keystone-6/core/types'
 import type { ReactElement, ReactNode } from 'react'
 
+/**
+ * 描述了一个表单字段可能具有的各种值类型。
+ * 这是一个递归类型定义，允许嵌套结构。
+ */
 export type FormFieldValue =
   | string
   | number
@@ -16,6 +20,10 @@ export type FormFieldValue =
   | readonly FormFieldValue[]
   | { [key: string]: FormFieldValue | undefined }
 
+/**
+ * 一个复杂的泛型类型定义，用于描述一个表单字段的完整结构。
+ * 它定义了一个包含表单输入组件、验证逻辑和GraphQL配置的对象类型。
+ */
 export type FormField<Value extends FormFieldValue, Options> = {
   kind: 'form'
   Input(props: {

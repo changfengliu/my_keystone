@@ -1,11 +1,12 @@
 import { useMemo } from 'react'
+
 import { Icon } from '@keystar/ui/icon'
 import { alignLeftIcon } from '@keystar/ui/icon/icons/alignLeftIcon'
 import { alignRightIcon } from '@keystar/ui/icon/icons/alignRightIcon'
 import { alignCenterIcon } from '@keystar/ui/icon/icons/alignCenterIcon'
 import { chevronDownIcon } from '@keystar/ui/icon/icons/chevronDownIcon'
-import { Transforms } from 'slate'
 
+import { Transforms } from 'slate'
 import type { DocumentFeatures } from '../views-shared'
 import { useToolbarState } from './toolbar-state'
 import { MenuTrigger, Menu } from '@keystar/ui/menu'
@@ -16,21 +17,9 @@ import { Text } from '@keystar/ui/typography'
 import { EditorToolbarButton } from '@keystar/ui/editor'
 
 const values = {
-  start: {
-    key: 'start',
-    label: 'Align Start',
-    icon: <Icon src={alignLeftIcon} />,
-  },
-  center: {
-    key: 'center',
-    label: 'Align Center',
-    icon: <Icon src={alignCenterIcon} />,
-  },
-  end: {
-    key: 'end',
-    label: 'Align End',
-    icon: <Icon src={alignRightIcon} />,
-  },
+  start: { key: 'start', label: '左对齐', icon: <Icon src={alignLeftIcon} /> },
+  center: { key: 'center', label: '居中对齐', icon: <Icon src={alignCenterIcon} /> },
+  end: { key: 'end', label: '右对齐', icon: <Icon src={alignRightIcon} /> },
 }
 
 export const TextAlignMenu = ({
@@ -55,7 +44,7 @@ export const TextAlignMenu = ({
             <Icon src={chevronDownIcon} />
           </EditorToolbarButton>
           <Tooltip>
-            <Text>Text Alignment</Text>
+            <Text>文本对齐</Text>
           </Tooltip>
         </TooltipTrigger>
         <Menu

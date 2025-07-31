@@ -136,25 +136,25 @@ function LinkDialog({
           }
         }}
       >
-        <Heading>{props.href ? 'Edit' : 'Add'} link</Heading>
+        <Heading>{props.href ? '编辑' : '添加'}链接</Heading>
         <Content>
           <Flex gap="large" direction="column">
-            <TextField label="Text" value={props.text} isReadOnly />
+            <TextField label="文本" value={props.text} isReadOnly />
             <TextField
               autoFocus
               isRequired
               onBlur={() => setTouched(true)}
-              label="Link"
+              label="链接"
               onChange={setHref}
               value={href}
-              errorMessage={showInvalidState && 'Please provide a valid URL.'}
+              errorMessage={showInvalidState && '请输入有效的链接地址.'}
             />
           </Flex>
         </Content>
         <ButtonGroup>
-          <Button onPress={dismiss}>Cancel</Button>
+          <Button onPress={dismiss}>取消</Button>
           <Button prominence="high" type="submit">
-            Save
+            保存
           </Button>
         </ButtonGroup>
       </form>
